@@ -1,6 +1,6 @@
-# WRF tools
+# WRF library
 
-This project holds a collection of tools for my WRF forecast project.
+This project holds a collection of common scripts and data structures for my ruby WRF forecast projects.
 
 Current version: v0.0.1
 
