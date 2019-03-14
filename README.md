@@ -5,9 +5,8 @@ This project holds a collection of common scripts and data structures for my rub
 Current version: v0.0.1
 
 ## Usage & Help
-```
-usage: follows
-```
+The scripts and classes will be imported in other projects, so there will be not explicit usage.
+For details check the documentation.
 
 ## Documentation
 The documentation will be created with yard and published at a later point.
@@ -22,7 +21,9 @@ Written with Ruby 2.4.0
 
 ## Requirements
 * Ruby with a version >= 2.4.0
-* Yard (for Documentation only)
+* yard (for documentation only)
+* csv (for reading input files)
+* json (for converting meteogram data)
 
 ## License
 see LICENSE
