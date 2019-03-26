@@ -1,2 +1,7 @@
 # excluding dev folder
 dev/
+
+# excluding documentation files
+.yardoc/
+create_yard.sh
+doc/
