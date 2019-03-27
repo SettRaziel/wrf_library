@@ -1,17 +1,22 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2018-01-28 21:25:24
+# @Last Modified time: 2019-03-27 19:45:20
 
 module Wrf
 
+  # Handler class that holds the data repository and the meta data for a wrf model result
   class WrfHandler
 
     require_relative '../file_reader'
     require_relative '../data_repository'
 
+    # @return [DataRepository] the data repository for the data
     attr_reader :data_repository
 
+    # initialization
+    # @param [String] the given filename
+    # @param [Date] the starting date of the model results
     def initialize(filename, start_date)
       data = FileReader.new(filename, ' ').data
       # create meta data from first entry
@@ -22,10 +27,14 @@ module Wrf
       data.each { |line|
         @data_repository.add_data_entry(create_wrf_entry(line))
       }
+      nil
     end
 
     private
 
+    # Method to create a new entry that can be put in the repository
+    # @params [Array] the elements of a single line for an entry
+    # @return [WrfEntry] the created entry
     def create_wrf_entry(elements)
       entry = WrfEntry.new()
       entry.forecast_time = elements[1].to_f
