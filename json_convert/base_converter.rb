@@ -1,15 +1,15 @@
 # @Author: Benjamin Held
 # @Date:   2018-06-23 17:03:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-03-28 19:35:14
+# @Last Modified time: 2019-03-30 14:17:25
 
-module Converter
+module JsonConverter
 
   require 'json'
   require_relative '../data/data_repository'
   require_relative '../string/string'
 
-  class BaseConverter
+  class BaseJsonConverter
 
     def initialize(repository)
       @repository = repository

@@ -1,13 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2018-07-27 18:54:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-03-28 19:35:27
+# @Last Modified time: 2019-03-30 14:17:58
 
-module Converter
+module JsonConverter
 
   require_relative '../data/wrf/wrf'
 
-  class WrfConverter < BaseConverter
+  class WrfJsonConverter < BaseJsonConverter
 
     private
 
