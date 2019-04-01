@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-03-27 19:45:20
+# @Last Modified time: 2019-04-01 18:10:17
 
 module Wrf
 
@@ -16,7 +16,7 @@ module Wrf
 
     # initialization
     # @param [String] the given filename
-    # @param [Date] the starting date of the model results
+    # @param [Time] the starting date and time of the model results
     def initialize(filename, start_date)
       data = FileReader.new(filename, ' ').data
       # create meta data from first entry
