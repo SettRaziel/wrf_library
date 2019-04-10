@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2018-06-23 17:03:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-04-08 20:57:56
+# @Last Modified time: 2019-04-10 20:45:48
 
 # Module to hold the classes handling the conversion of weather data into a
 # predefined json format.
@@ -9,7 +9,7 @@ module JsonConverter
 
   require 'json'
   require_relative '../data/data_repository'
-  require_relative '../string/string'
+  require_relative '../ruby_utils/string/string'
 
   # Abstract parent class for the json converter to convert preread weather data
   # into the specified output format. The metadata is identical for all

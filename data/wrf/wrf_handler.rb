@@ -1,14 +1,14 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-04-01 18:10:17
+# @Last Modified time: 2019-04-10 20:46:02
 
 module Wrf
 
   # Handler class that holds the data repository and the meta data for a wrf model result
   class WrfHandler
 
-    require_relative '../file_reader'
+    require_relative '../../ruby_utils/data/file_reader'
     require_relative '../data_repository'
 
     # @return [DataRepository] the data repository for the data

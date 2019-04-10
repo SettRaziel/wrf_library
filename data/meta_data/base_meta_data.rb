@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2018-01-27 16:45:47
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-04-01 18:09:35
+# @Last Modified time: 2019-04-10 20:41:20
 
 # This module holds the classes that describe the meta information for the
 # different data sets.
@@ -12,7 +12,7 @@ module MetaData
   class BaseMetaData
 
     require_relative '../entity/entity'
-    require_relative '../../string/string'
+    require_relative '../../ruby_utils/string/string'
 
     # @return [Station] the information abount the station
     attr_reader :station
