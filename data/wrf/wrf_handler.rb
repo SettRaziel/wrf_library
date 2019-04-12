@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-04-10 20:46:02
+# @Last Modified time: 2019-04-12 22:16:45
 
 module Wrf
 
@@ -9,7 +9,7 @@ module Wrf
   class WrfHandler
 
     require_relative '../../ruby_utils/data/file_reader'
-    require_relative '../data_repository'
+    require_relative '../../ruby_utils/data/data_repository'
 
     # @return [DataRepository] the data repository for the data
     attr_reader :data_repository
@@ -27,7 +27,6 @@ module Wrf
       data.each { |line|
         @data_repository.add_data_entry(create_wrf_entry(line))
       }
-      nil
     end
 
     private
