@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2018-06-23 17:03:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-04-12 22:17:45
+# @Last Modified time: 2019-04-13 15:54:16
 
 # Module to hold the classes handling the conversion of weather data into a
 # predefined json format.
@@ -79,7 +79,7 @@ module JsonConverter
     # method
     def generate_data_values()
       fail NotImplementedError, " Error: the subclass #{self.class} needs " \
-           "to implement the method: generate_data_hashes from its base class".red
+           "to implement the method: generate_data_values from its base class".red
     end
 
   end
