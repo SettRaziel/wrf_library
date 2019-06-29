@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-06-29 12:56:24
+# @Last Modified time: 2019-06-29 14:15:06
 
 module Wrf
 
@@ -10,6 +10,7 @@ module Wrf
 
     require_relative '../../ruby_utils/data/file_reader'
     require_relative '../../ruby_utils/data/data_repository'
+    require_relative '../meta_data/meta_data'
 
     # @return [DataRepository] the data repository for the data
     attr_reader :data_repository
