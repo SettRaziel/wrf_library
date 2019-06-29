@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-04-12 22:16:45
+# @Last Modified time: 2019-06-29 12:56:24
 
 module Wrf
 
@@ -27,6 +27,23 @@ module Wrf
       data.each { |line|
         @data_repository.add_data_entry(create_wrf_entry(line))
       }
+    end
+
+    # method to retrieve the complete data series for a given attribute
+    # @param [Symbol] the attribute that is requested
+    # @return [Array] the data of the requested attribute
+    # @raise [ArgumentError] if an invalid attribute is provided
+    def retrieve_data_set(symbol)
+      values = Array.new()
+      begin
+        @data_repository.repository.each { |data|
+          value = data.send(symbol)
+          values << value
+        }
+      rescue NoMethodError => e
+        raise ArgumentError, "Error: Given symbol #{symbol} does not exist.".red
+      end
+      return values
     end
 
     private
