@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-05 20:10:11
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2019-03-07 17:56:28
+# @Last Modified time: 2019-07-03 15:56:39
 
 module MetaData
 
@@ -22,7 +22,7 @@ module MetaData
       geo_coordinate = Entity::Coordinate.new(entries[5].to_f, entries[6].to_f)
       @grid_data = Entity::GridPoint.new(entries[8].to_f, entries[9].to_f,
                                  entries[11].to_f, entries[12].to_f)
-      @station = Entity::Station.new(entries[0], entries[3], entries[13],
+      @station = Entity::Station.new(entries[0], entries[3], entries[13].to_f,
                              geo_coordinate)
       nil
     end
