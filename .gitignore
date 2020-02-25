@@ -3,5 +3,7 @@ dev/
 
 # excluding documentation files
 .yardoc/
-create_yard.sh
 doc/
+
+# exclude gem informations
+*.gem
