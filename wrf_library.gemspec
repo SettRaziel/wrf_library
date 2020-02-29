@@ -15,5 +15,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rake",      '~> 13.0', '>= 13.0.1'
   s.add_development_dependency "test-unit", '~> 3.3', '>= 3.3.0'
+  s.add_development_dependency "rspec", '~> 3.9', '>= 3.9.0'
   s.add_dependency "ruby_utils", '~> 0.0.1'
 end
