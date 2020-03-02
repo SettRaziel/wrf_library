@@ -1,17 +1,17 @@
 # @Author: Benjamin Held
 # @Date:   2018-07-27 18:54:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-02-25 21:36:35
+# @Last Modified time: 2020-03-02 19:28:05
 
 require 'wrf_library/wrf'
 
 module WrfLibrary
 
-module JsonConverter
+  module JsonConverter
 
     # Child class to generate valid json output for the result data of a given wrf meteogram
     # result already stored in a data repository
-    class WrfJsonConverter < BaseJsonConverter
+    class WrfJsonConverter < BaseStationJsonConverter
 
       private
 
