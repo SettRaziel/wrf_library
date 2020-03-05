@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-02 18:44:47
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-03-02 18:47:25
+# @Last Modified time: 2020-03-05 20:52:20
 
 require 'ruby_utils/data_repository'
 require 'ruby_utils/string'
@@ -25,12 +25,12 @@ module WrfLibrary
       end
 
       # method to convert the data of repository into the given json output
-      def convert
+      def convert(filepath)
         output = Hash.new()
 
         output[:meta_data] = generate_meta_hash()
         output[:weather_data] = generate_data_values()
-        file = File.open("output.json", "w")
+        file = File.open(File.join(filepath,"output.json"), "w")
         file.write(JSON.pretty_generate(output))
         nil
       end
