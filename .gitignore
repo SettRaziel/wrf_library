@@ -7,3 +7,6 @@ doc/
 
 # exclude gem informations
 *.gem
+
+# exclude coverage files
+coverage/
