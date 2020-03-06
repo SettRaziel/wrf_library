@@ -1,0 +1,113 @@
+{
+  "meta_data": {
+    "station": {
+      "name": "Berlin",
+      "descriptor": "Ber",
+      "elevation": 44.2,
+      "coordinate": {
+        "x": 52.49,
+        "y": 13.36
+      }
+    },
+    "start_date": "2020-06-29",
+    "grid_point": {
+      "grid_point": {
+        "x": 222.0,
+        "y": 185.0
+      }
+    },
+    "grid_coordinates": {
+      "grid_coordinates": {
+        "x": 52.469,
+        "y": 13.371
+      }
+    }
+  },
+  "weather_data": [
+    {
+      "@forecast_time": 0.002778,
+      "@air_temperature": 294.71613,
+      "@mixing_ratio": 0.00854,
+      "@u_wind": 1.61007,
+      "@v_wind": -1.22559,
+      "@pressure": 101892.24219,
+      "@longwave": 331.0444,
+      "@shortwave": 755.06628,
+      "@sensible_heat": 127.58083,
+      "@latent_heat": 40.27681,
+      "@skin_temperature": 299.85867,
+      "@soil_temperature": 293.82343,
+      "@cumulus_rainfall": 0.0,
+      "@explicit_rainfall": 0.0,
+      "@water_vapor": 0.00266
+    },
+    {
+      "@forecast_time": 0.005833,
+      "@air_temperature": 294.30182,
+      "@mixing_ratio": 0.00848,
+      "@u_wind": 1.62439,
+      "@v_wind": -1.25033,
+      "@pressure": 101892.03906,
+      "@longwave": 331.0444,
+      "@shortwave": 755.06628,
+      "@sensible_heat": 143.73822,
+      "@latent_heat": 38.11502,
+      "@skin_temperature": 302.5545,
+      "@soil_temperature": 293.82599,
+      "@cumulus_rainfall": 0.0,
+      "@explicit_rainfall": 0.0,
+      "@water_vapor": 0.00249
+    },
+    {
+      "@forecast_time": 0.009194,
+      "@air_temperature": 294.06345,
+      "@mixing_ratio": 0.00845,
+      "@u_wind": 1.64508,
+      "@v_wind": -1.2833,
+      "@pressure": 101891.60156,
+      "@longwave": 331.0444,
+      "@shortwave": 755.06628,
+      "@sensible_heat": 145.06268,
+      "@latent_heat": 38.08988,
+      "@skin_temperature": 301.48239,
+      "@soil_temperature": 293.82858,
+      "@cumulus_rainfall": 0.0,
+      "@explicit_rainfall": 0.0,
+      "@water_vapor": 0.00169
+    },
+    {
+      "@forecast_time": 0.012892,
+      "@air_temperature": 293.95084,
+      "@mixing_ratio": 0.00843,
+      "@u_wind": 1.66916,
+      "@v_wind": -1.3156,
+      "@pressure": 101891.36719,
+      "@longwave": 331.0444,
+      "@shortwave": 755.06628,
+      "@sensible_heat": 147.57762,
+      "@latent_heat": 38.04846,
+      "@skin_temperature": 301.58942,
+      "@soil_temperature": 293.83142,
+      "@cumulus_rainfall": 0.0,
+      "@explicit_rainfall": 0.0,
+      "@water_vapor": 0.00121
+    },
+    {
+      "@forecast_time": 0.016958,
+      "@air_temperature": 293.83066,
+      "@mixing_ratio": 0.00841,
+      "@u_wind": 1.69202,
+      "@v_wind": -1.34889,
+      "@pressure": 101891.64062,
+      "@longwave": 331.0444,
+      "@shortwave": 755.06628,
+      "@sensible_heat": 149.86797,
+      "@latent_heat": 37.99812,
+      "@skin_temperature": 301.49341,
+      "@soil_temperature": 293.8345,
+      "@cumulus_rainfall": 0.0,
+      "@explicit_rainfall": 0.0,
+      "@water_vapor": 0.00048
+    }
+  ]
+}
