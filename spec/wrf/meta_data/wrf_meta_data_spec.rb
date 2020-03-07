@@ -2,10 +2,9 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-01 13:59:08
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-03-01 20:18:04
+# @Last Modified time: 2020-03-06 17:33:13
 
 require 'spec_helper'
-require 'wrf_library/wrf'
 
 describe WrfLibrary::WrfMetaData do
 
