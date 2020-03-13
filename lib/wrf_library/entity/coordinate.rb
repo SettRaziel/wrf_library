@@ -1,10 +1,12 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-05 20:22:28
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-02-25 21:17:30
+# @Last Modified time: 2020-03-13 14:44:55
 
 module WrfLibrary
 
+  # This module holds basic entity classes that represent entity information of 
+  # a forecast location
   module Entity
 
     # Simple coordinate class, that can have any combination of numbers for the

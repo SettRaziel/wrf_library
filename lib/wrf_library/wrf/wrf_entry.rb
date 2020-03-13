@@ -1,10 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-01 18:11:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-02-25 21:18:51
+# @Last Modified time: 2020-03-13 14:46:00
 
 module WrfLibrary
 
+  # This module holds wrf specific data classes and handlers
   module Wrf
 
     # Simple data class to represent an entry of the wrf station output

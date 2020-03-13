@@ -1,12 +1,14 @@
 # @Author: Benjamin Held
 # @Date:   2019-07-06 16:37:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-02-25 21:19:40
+# @Last Modified time: 2020-03-13 14:47:53
 
 require 'ruby_utils/string'
 
 module WrfLibrary
 
+  # This class provides logic and methods to identify and manage results for 
+  # different timestamps
   class TimeConverter
 
     def self.get_date_to_timestamp(timestamp)
