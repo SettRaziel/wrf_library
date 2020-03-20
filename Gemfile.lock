@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/SettRaziel/ruby_utils
-  revision: 1c1d135cc4daaa7f1fb278e5be94ebbba466274d
+  revision: ad3b19a6d757008d29f8d0b37a12b1a28922f2ac
   specs:
     ruby_utils (0.0.1)
 
@@ -29,7 +29,7 @@ GEM
       rspec-mocks (~> 3.9.0)
     rspec-core (3.9.1)
       rspec-support (~> 3.9.1)
-    rspec-expectations (3.9.0)
+    rspec-expectations (3.9.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-mocks (3.9.1)
