@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-02-25 21:26:30
+# @Last Modified time: 2020-04-01 16:08:33
 
 module WrfLibrary
 
@@ -18,22 +18,20 @@ module WrfLibrary
       attr_reader :data_repository
 
       # initialization
-      # @param [String] the given filename
-      # @param [Time] the starting date and time of the model results
-      def initialize(filename, start_date)
+      # @param [String] filename the given filename
+      # @param [Time] start_date the starting date and time of the model results
+      # @param [float] duration the optional forecast duration
+      def initialize(filename, start_date, duration=Float::MAX)
         data = RubyUtils::FileReader.new(filename, ' ').data
         # create meta data from first entry
         meta_data = WrfMetaData.new(data[0], start_date)
         data.delete_at(0)
-        # create repository and add them
         @data_repository = RubyUtils::DataRepository.new(meta_data)
-        data.each { |line|
-          @data_repository.add_data_entry(create_wrf_entry(line))
-        }
+        fill_repository(data, duration)
       end
 
       # method to retrieve the complete data series for a given attribute
-      # @param [Symbol] the attribute that is requested
+      # @param [Symbol] symbol the attribute that is requested
       # @return [Array] the data of the requested attribute
       # @raise [ArgumentError] if an invalid attribute is provided
       def retrieve_data_set(symbol)
@@ -51,8 +49,23 @@ module WrfLibrary
 
       private
 
-      # Method to create a new entry that can be put in the repository
-      # @params [Array] the elements of a single line for an entry
+      # method to fill the data into the data repository
+      # @param [Array] data the unformatted input data
+      # @param [float] duration the forecast duration
+      def fill_repository(data, duration)
+        data.each { |line|
+          entry = create_wrf_entry(line)
+          if (entry.forecast_time <= duration)
+            @data_repository.add_data_entry(entry)
+          else
+            break
+          end
+        }
+        nil
+      end
+
+      # method to create a new entry that can be put in the repository
+      # @params [Array] elements the elements of a single line for an entry
       # @return [WrfEntry] the created entry
       def create_wrf_entry(elements)
         entry = WrfEntry.new()
