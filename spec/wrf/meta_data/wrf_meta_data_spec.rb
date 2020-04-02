@@ -2,11 +2,33 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-01 13:59:08
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-03-06 17:33:13
+# @Last Modified time: 2020-04-02 18:15:26
 
 require 'spec_helper'
 
 describe WrfLibrary::WrfMetaData do
+
+  describe ".new" do
+    context "given an array with the header information" do
+      it "create meta data and have the correct station name" do
+        header = [ "Berlin", "1", "5", "Ber", "(", "52.490,", "13.360)", "(", "222,", "185)",
+                   "(", "52.469,",  "13.371)", "44.2" "meters" ]
+        meta_data = WrfLibrary::WrfMetaData.new(header, Date.new(2020, 03, 29))
+        expect(meta_data.station.name).to match('Berlin')
+      end
+    end
+  end
+
+  describe ".new" do
+    context "given an array with the header information" do
+      it "create meta data and have the correct station name" do
+        header = [ "Los_Realejos", "1", "3", "Lor", "(", "28.370,", "-16.580)", "(", "152,", "157)",
+                   "(", "28.379,", "-16.590)", "442.3", "meters" ]
+        meta_data = WrfLibrary::WrfMetaData.new(header, Date.new(2019, 11, 29))
+        expect(meta_data.station.name).to match('Los Realejos')
+      end
+    end
+  end
 
   describe ".new" do
     context "given a meteogram output file and the date" do
