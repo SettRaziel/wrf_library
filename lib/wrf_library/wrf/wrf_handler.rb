@@ -1,33 +1,39 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-04-01 16:08:33
+# @Last Modified time: 2020-04-11 11:41:49
+
+require 'ruby_utils/file_reader'
+require 'ruby_utils/data_repository'
+require 'wrf_library/wrf_meta_data'
 
 module WrfLibrary
 
   module Wrf
 
     # Handler class that holds the data repository and the meta data for a wrf model result
+    # The data can be added completely be leaving the optional values of the constructor
+    # unchanged. But it also can be read only a subset of the provided data by setting
+    # a duration and an offset
     class WrfHandler
-
-      require 'ruby_utils/file_reader'
-      require 'ruby_utils/data_repository'
-      require 'wrf_library/wrf_meta_data'
 
       # @return [DataRepository] the data repository for the data
       attr_reader :data_repository
+      # @return [Float] the amount of time the forecast data comprises
+      attr_reader :duration
 
-      # initialization
+      # initialization for data from a file
       # @param [String] filename the given filename
       # @param [Time] start_date the starting date and time of the model results
-      # @param [float] duration the optional forecast duration
-      def initialize(filename, start_date, duration=Float::MAX)
+      # @param [Float] duration the optional forecast duration
+      # @param [Float] offset the optional offset when to start with the data
+      def initialize(filename, start_date, duration=Float::MAX, offset=0.0)
         data = RubyUtils::FileReader.new(filename, ' ').data
         # create meta data from first entry
         meta_data = WrfMetaData.new(data[0], start_date)
         data.delete_at(0)
         @data_repository = RubyUtils::DataRepository.new(meta_data)
-        fill_repository(data, duration)
+        fill_repository(data, duration, offset)
       end
 
       # method to retrieve the complete data series for a given attribute
@@ -51,25 +57,30 @@ module WrfLibrary
 
       # method to fill the data into the data repository
       # @param [Array] data the unformatted input data
-      # @param [float] duration the forecast duration
-      def fill_repository(data, duration)
+      # @param [Float] duration the forecast duration
+      # @param [Float] offset the offset when to start with the data addition
+      def fill_repository(data, duration, offset)
         data.each { |line|
-          entry = create_wrf_entry(line)
+          next if (line[1].to_f < offset)
+          entry = create_wrf_entry(line, offset)
           if (entry.forecast_time <= duration)
             @data_repository.add_data_entry(entry)
           else
             break
           end
         }
+        @duration = @data_repository.repository.last.forecast_time
         nil
       end
 
       # method to create a new entry that can be put in the repository
       # @params [Array] elements the elements of a single line for an entry
+      # @param [Float] offset the offset which needs tu be subtracted 
+      # from the time forecast time
       # @return [WrfEntry] the created entry
-      def create_wrf_entry(elements)
+      def create_wrf_entry(elements, offset)
         entry = WrfEntry.new()
-        entry.forecast_time = elements[1].to_f
+        entry.forecast_time = elements[1].to_f - offset
         entry.air_temperature = elements[5].to_f
         entry.mixing_ratio = elements[6].to_f
         entry.u_wind = elements[7].to_f

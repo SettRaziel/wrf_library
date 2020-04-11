@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-01 11:07:37
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-04-01 16:03:35
+# @Last Modified time: 2020-04-11 11:38:57
 
 require 'spec_helper'
 
@@ -57,5 +57,21 @@ describe WrfLibrary::Wrf::WrfHandler do
       end
     end
   end
+
+  describe ".new" do
+    context "given a meteogram output file, the date, a duration and an offset" do
+      it "read the file and have 507 entries in the repository starting with the correct temperature and time" do
+        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Date.new(2020, 03, 29), 12.0, 6.0)
+        expect(handler.data_repository.repository.size).to match(507)
+        temperature_values = handler.retrieve_data_set(:air_temperature)
+        forecast_time = handler.retrieve_data_set(:forecast_time)
+        expect(temperature_values[0].round(3)).to match(271.113)
+        expect(temperature_values.last.round(3)).to match(280.919)
+        expect(forecast_time[0].round(3)).to match(0.0)
+        expect(forecast_time.last.round(3)).to match(12.000)
+      end
+    end
+  end
+
 
 end
