@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-04-11 11:41:49
+# @Last Modified time: 2020-04-19 19:51:38
 
 require 'ruby_utils/file_reader'
 require 'ruby_utils/data_repository'
@@ -47,7 +47,7 @@ module WrfLibrary
             value = data.send(symbol)
             values << value
           }
-        rescue NoMethodError => e
+        rescue NoMethodError
           raise ArgumentError, "Error: Given symbol #{symbol} does not exist.".red
         end
         return values
