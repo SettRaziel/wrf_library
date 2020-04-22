@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/SettRaziel/ruby_utils
-  revision: 98225b93524e12a6d251982c7951ec334844800a
+  revision: 1fca1087a4fb9fc9ab786ec378326388146591de
   specs:
     ruby_utils (0.0.1)
 
