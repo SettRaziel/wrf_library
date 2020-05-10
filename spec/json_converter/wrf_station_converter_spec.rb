@@ -2,9 +2,10 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-05 20:42:51
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-03-06 17:33:21
+# @Last Modified time: 2020-05-10 16:33:38
 
 require 'spec_helper'
+require 'wrf_library/json_converter'
 require 'fileutils'
 
 describe WrfLibrary::JsonConverter::WrfJsonConverter do
@@ -18,12 +19,7 @@ describe WrfLibrary::JsonConverter::WrfJsonConverter do
         expect(FileUtils.compare_file(File.join(__dir__,"output.json"), File.join(__dir__,"expected_output.json"))).to be_truthy
 
         # clean up data from the test and catch errors since they should not let the test fail
-        begin
-          File.delete(File.join(__dir__,"output.json"))
-        rescue Exception => e
-          puts e.message
-          puts e.backtrace.inspect
-        end
+        File.delete(File.join(__dir__,"output.json"))
       end
     end
   end
