@@ -1,16 +1,16 @@
 # @Author: Benjamin Held
 # @Date:   2019-07-06 16:37:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-05-23 21:14:01
+# @Last Modified time: 2020-06-03 22:11:40
 
 require "ruby_utils/string"
 require "ruby_utils/parameter_converter"
 
 module WrfLibrary
 
-  # This class provides logic and methods to identify and manage results for 
+  # This module provides logic and methods to identify and manage results for 
   # different timestamps
-  class TimeConverter
+  module TimeConverter
 
     # method to determine the offset between the actual hour and the next midnight
     # @param [String] start_hour the starting hour in string representation
