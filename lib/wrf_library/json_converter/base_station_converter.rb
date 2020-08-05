@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-02 18:44:47
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-03-06 16:26:52
+# @Last Modified time: 2020-08-05 16:11:21
 
 require 'ruby_utils/data_repository'
 require 'ruby_utils/string'
@@ -21,7 +21,7 @@ module WrfLibrary
       # initialization
       # @param [DataRepository] the prefilled repository
       def initialize(repository)
-        @repository = repository
+        @data = repository
       end
 
       # method to convert the data of repository into the given json output
@@ -40,13 +40,13 @@ module WrfLibrary
       private
 
       # @return [DataRepository] the data repository
-      attr_reader :repository
+      attr_reader :data
 
       # methode to create the meta entry based on the meta data in the repoitory
       # @return [Hash] the prepared key/value hash of the meta data for the
       # json conversion
       def generate_meta_hash()
-        meta_data = @repository.meta_data
+        meta_data = @data.meta_data
         meta_hash = Hash.new()
         meta_hash[:station] = generate_station_hash(meta_data.station)
         meta_hash[:start_date] = meta_data.start_date

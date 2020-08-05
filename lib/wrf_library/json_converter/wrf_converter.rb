@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2018-07-27 18:54:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-03-02 19:28:05
+# @Last Modified time: 2020-08-05 16:10:51
 
 require 'wrf_library/wrf'
 
@@ -20,9 +20,9 @@ module WrfLibrary
       # @return [Hash] the key-value hash for the json output
       def add_additions()
           additions = Hash.new()
-          additions[:grid_point] = generate_grid_data(@repository.meta_data.grid_data)
+          additions[:grid_point] = generate_grid_data(@data.meta_data.grid_data)
           additions[:grid_coordinates] = 
-            generate_grid_coordinates(@repository.meta_data.grid_data)
+            generate_grid_coordinates(@data.meta_data.grid_data)
           return additions
       end
 
@@ -50,11 +50,11 @@ module WrfLibrary
       # for the stored data values
       # @return [Hash] the key-value hashes for the json output 
       def generate_data_values()
-        data = Array.new()
-        @repository.repository.each { |dataset|
-          data << create_data_hash(dataset)
+        data_array = Array.new()
+        @data.repository.each { |dataset|
+          data_array << create_data_hash(dataset)
         }
-        return data
+        return data_array
       end
 
       # method to create a valid json hash for a given data entry
