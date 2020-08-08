@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2018-07-27 18:54:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-05 16:10:51
+# @Last Modified time: 2020-08-08 12:22:23
 
 require 'wrf_library/wrf'
 
@@ -18,7 +18,7 @@ module WrfLibrary
       # implementation of the abstract parent method. In addition to the data stored by
       # the parent class, the wrf data also stores data aber the considered grid point
       # @return [Hash] the key-value hash for the json output
-      def add_additions()
+      def add_additions
           additions = Hash.new()
           additions[:grid_point] = generate_grid_data(@data.meta_data.grid_data)
           additions[:grid_coordinates] = 
@@ -49,7 +49,7 @@ module WrfLibrary
       # implementation of the abstract parent method to create valid json objects
       # for the stored data values
       # @return [Hash] the key-value hashes for the json output 
-      def generate_data_values()
+      def generate_data_values
         data_array = Array.new()
         @data.repository.each { |dataset|
           data_array << create_data_hash(dataset)

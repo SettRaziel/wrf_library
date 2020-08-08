@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-02 18:44:47
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-05 16:11:21
+# @Last Modified time: 2020-08-08 12:21:47
 
 require 'ruby_utils/data_repository'
 require 'ruby_utils/string'
@@ -45,7 +45,7 @@ module WrfLibrary
       # methode to create the meta entry based on the meta data in the repoitory
       # @return [Hash] the prepared key/value hash of the meta data for the
       # json conversion
-      def generate_meta_hash()
+      def generate_meta_hash
         meta_data = @data.meta_data
         meta_hash = Hash.new()
         meta_hash[:station] = generate_station_hash(meta_data.station)
@@ -71,7 +71,7 @@ module WrfLibrary
       # abstract method which allows additions to the meta data hash if present
       # @raise [NotImplementedError] if the child class does not implement this
       # method
-      def add_additions()
+      def add_additions
         fail NotImplementedError, " Error: the subclass #{self.class} needs " \
              "to implement the method: add_additions from its base class".red
       end
@@ -81,7 +81,7 @@ module WrfLibrary
       # Hashes the json conversion will fail.
       # @raise [NotImplementedError] if the child class does not implement this
       # method
-      def generate_data_values()
+      def generate_data_values
         fail NotImplementedError, " Error: the subclass #{self.class} needs " \
              "to implement the method: generate_data_values from its base class".red
       end
