@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-04-19 19:51:38
+# @Last Modified time: 2020-08-10 18:23:09
 
 require 'ruby_utils/file_reader'
 require 'ruby_utils/data_repository'
@@ -74,7 +74,7 @@ module WrfLibrary
       end
 
       # method to create a new entry that can be put in the repository
-      # @params [Array] elements the elements of a single line for an entry
+      # @param [Array] elements the elements of a single line for an entry
       # @param [Float] offset the offset which needs tu be subtracted 
       # from the time forecast time
       # @return [WrfEntry] the created entry

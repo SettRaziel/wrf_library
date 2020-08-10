@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2018-07-27 18:54:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-08 12:22:23
+# @Last Modified time: 2020-08-10 18:20:18
 
 require 'wrf_library/wrf'
 
@@ -27,7 +27,7 @@ module WrfLibrary
       end
 
       # method to generate a json Hash for the representation of a grid point
-      # @param [GridPoint] the given grid point
+      # @param [GridPoint] grid_point the given grid point
       # @return [Hash] the key-value hash for the json output    
       def generate_grid_data(grid_point)
         grid_data = Hash.new()
@@ -37,7 +37,7 @@ module WrfLibrary
       end
 
       # method to generate a json Hash for the representation of a grid coordinate
-      # @param [GridPoint] the given grid coordinate
+      # @param [GridPoint] grid_point the given grid coordinate
       # @return [Hash] the key-value hash for the json output 
       def generate_grid_coordinates(grid_point)
         grid_coordinates = Hash.new()
@@ -58,7 +58,7 @@ module WrfLibrary
       end
 
       # method to create a valid json hash for a given data entry
-      # @param [WrfEntry] the given data entry
+      # @param [WrfEntry] dataset the given data entry
       # @return [Hash] the key-value hashes for the json output     
       def create_data_hash(dataset)
         data_entries = Hash.new()

@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-02 18:44:47
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-09 10:38:08
+# @Last Modified time: 2020-08-10 18:23:27
 
 require 'ruby_utils/data_repository'
 require 'ruby_utils/string'
@@ -19,13 +19,13 @@ module WrfLibrary
     class BaseStationJsonConverter
 
       # initialization
-      # @param [DataRepository] the prefilled repository
+      # @param [DataRepository] repository the prefilled repository
       def initialize(repository)
         @data = repository
       end
 
       # method to convert the data of repository into the given json output
-      # @params [String] filepath the filepath where the output should be created,
+      # @param [String] filepath the filepath where the output should be created,
       # if nil the output will be printed to stdout
       # @return [String] the json formatted output
       def convert(filepath=nil)
@@ -60,7 +60,7 @@ module WrfLibrary
       end
 
       # method to create the station entry based on the meta data in the repository
-      # @param [Station] the station data
+      # @param [Station] station the station data
       # @return [Hash] the prepared key/value hash of the station for the
       # json conversion
       def generate_station_hash(station)

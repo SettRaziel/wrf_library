@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-05 20:22:28
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-03-13 14:44:55
+# @Last Modified time: 2020-08-10 18:20:47
 
 module WrfLibrary
 
@@ -21,8 +21,8 @@ module WrfLibrary
       attr_reader :y
 
       # initialization
-      # @param [Number] the first coordinate of the tupel
-      # @param [Number] the second coordinate of the tupel
+      # @param [Number] x the first coordinate of the tupel
+      # @param [Number] y the second coordinate of the tupel
       def initialize(x, y)
         @x = x
         @y = y

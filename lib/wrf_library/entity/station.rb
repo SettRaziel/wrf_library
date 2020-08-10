@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-05 20:15:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-02-25 21:17:51
+# @Last Modified time: 2020-08-10 18:21:15
 
 module WrfLibrary
 
@@ -20,10 +20,10 @@ module WrfLibrary
       attr_reader :coordinate
 
       # initialization
-      # @param [String] the name of the station
-      # @param [String] the description of the station
-      # @param [Number] the elevation of the station
-      # @param [Coordinate] the geo coordinates of the station
+      # @param [String] name the name of the station
+      # @param [String] descriptor the description of the station
+      # @param [Number] elevation the elevation of the station
+      # @param [Coordinate] geo_coordinate the geo coordinates of the station
       def initialize(name, descriptor, elevation, geo_coordinate)
         @name = name
         @descriptor = descriptor
