@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2018-07-27 18:54:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-10 18:20:18
+# @Last Modified time: 2020-08-15 13:35:40
 
 require 'wrf_library/wrf'
 
@@ -16,7 +16,7 @@ module WrfLibrary
       private
 
       # implementation of the abstract parent method. In addition to the data stored by
-      # the parent class, the wrf data also stores data aber the considered grid point
+      # the parent class, the wrf data also stores data of the considered grid point
       # @return [Hash] the key-value hash for the json output
       def add_additions
           additions = Hash.new()
