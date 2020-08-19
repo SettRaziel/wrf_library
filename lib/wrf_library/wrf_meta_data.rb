@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-05 20:10:11
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-04-02 17:59:52
+# @Last Modified time: 2020-08-19 10:29:38
 
 require 'time'
 require 'ruby_utils/meta_data'
@@ -38,9 +38,10 @@ class WrfMetaData < RubyUtils::MetaData
   # relevant meta information
   def parse_header(header_line)
     entries = delete_special_chars(header_line)
-    geo_coordinate = Entity::Coordinate.new(entries[5].to_f, entries[6].to_f)
+    # switch entries for geo coordinates since latitude comes before longitude
+    geo_coordinate = Entity::Coordinate.new(entries[6].to_f, entries[5].to_f)
     @grid_data = Entity::GridPoint.new(entries[8].to_f, entries[9].to_f,
-                               entries[11].to_f, entries[12].to_f)
+                               entries[12].to_f, entries[11].to_f)
     # special case for multi word locations
     station_name = entries[0].sub("_", " ")
     @station = Entity::Station.new(station_name, entries[3], entries[13].to_f,

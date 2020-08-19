@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-01 13:59:08
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-04-21 19:39:22
+# @Last Modified time: 2020-08-19 10:18:46
 
 require 'spec_helper'
 
@@ -55,8 +55,8 @@ describe WrfLibrary::WrfMetaData do
       it "read the file and have the correct grid coordinate data" do
         handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Date.new(2019, 06, 29))
         grid_coordinate = handler.data_repository.meta_data.grid_data.grid_coordinates
-        expect(grid_coordinate.x).to eq(52.469)
-        expect(grid_coordinate.y).to eq(13.371)
+        expect(grid_coordinate.x).to eq(13.371)
+        expect(grid_coordinate.y).to eq(52.469)
       end
     end
   end
@@ -96,8 +96,8 @@ describe WrfLibrary::WrfMetaData do
       it "read the file and have the correct station elevation" do
         handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Date.new(2019, 06, 29))
         station_coordinate = handler.data_repository.meta_data.station.coordinate
-        expect(station_coordinate.x).to eq(52.490)
-        expect(station_coordinate.y).to eq(13.360)        
+        expect(station_coordinate.x).to eq(13.360)        
+        expect(station_coordinate.y).to eq(52.490)
       end
     end
   end
