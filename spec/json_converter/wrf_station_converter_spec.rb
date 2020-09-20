@@ -2,11 +2,11 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-05 20:42:51
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-09 10:35:25
+# @Last Modified time: 2020-09-20 20:35:12
 
-require 'spec_helper'
-require 'wrf_library/json_converter'
-require 'fileutils'
+require "spec_helper"
+require "wrf_library/json_converter"
+require "fileutils"
 
 describe WrfLibrary::JsonConverter::WrfJsonConverter do
 

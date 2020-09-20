@@ -2,9 +2,9 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-01 13:59:08
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-19 10:18:46
+# @Last Modified time: 2020-09-20 20:35:31
 
-require 'spec_helper'
+require "spec_helper"
 
 describe WrfLibrary::WrfMetaData do
 
@@ -14,7 +14,7 @@ describe WrfLibrary::WrfMetaData do
         header = [ "Berlin", "1", "5", "Ber", "(", "52.490,", "13.360)", "(", "222,", "185)",
                    "(", "52.469,",  "13.371)", "44.2" "meters" ]
         meta_data = WrfLibrary::WrfMetaData.new(header, Date.new(2020, 03, 29))
-        expect(meta_data.station.name).to eq('Berlin')
+        expect(meta_data.station.name).to eq("Berlin")
       end
     end
   end
@@ -25,7 +25,7 @@ describe WrfLibrary::WrfMetaData do
         header = [ "Los_Realejos", "1", "3", "Lor", "(", "28.370,", "-16.580)", "(", "152,", "157)",
                    "(", "28.379,", "-16.590)", "442.3", "meters" ]
         meta_data = WrfLibrary::WrfMetaData.new(header, Date.new(2019, 11, 29))
-        expect(meta_data.station.name).to eq('Los Realejos')
+        expect(meta_data.station.name).to eq("Los Realejos")
       end
     end
   end
@@ -66,7 +66,7 @@ describe WrfLibrary::WrfMetaData do
       it "read the file and have the correct station name" do
         handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Date.new(2019, 06, 29))
         station = handler.data_repository.meta_data.station
-        expect(station.name).to eq('Berlin')
+        expect(station.name).to eq("Berlin")
       end
     end
   end
@@ -76,7 +76,7 @@ describe WrfLibrary::WrfMetaData do
       it "read the file and have the correct station description" do
         handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Date.new(2019, 06, 29))
         station = handler.data_repository.meta_data.station
-        expect(station.descriptor).to eq('Ber')
+        expect(station.descriptor).to eq("Ber")
       end
     end
   end

@@ -2,9 +2,9 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-01 11:07:37
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-04-21 19:39:34
+# @Last Modified time: 2020-09-20 20:35:46
 
-require 'spec_helper'
+require "spec_helper"
 
 describe WrfLibrary::Wrf::WrfHandler do
 

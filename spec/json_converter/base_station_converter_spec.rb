@@ -2,10 +2,10 @@
 # @Author: Benjamin Held
 # @Date:   2020-05-10 16:24:21
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-09 10:40:17
+# @Last Modified time: 2020-09-20 20:35:03
 
-require 'spec_helper'
-require 'wrf_library/json_converter'
+require "spec_helper"
+require "wrf_library/json_converter"
 
 describe WrfLibrary::JsonConverter::BaseStationJsonConverter do
 
