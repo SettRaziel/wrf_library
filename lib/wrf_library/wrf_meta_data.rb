@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-05 20:10:11
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-19 10:29:38
+# @Last Modified time: 2020-09-20 17:00:00
 
-require 'time'
-require 'ruby_utils/meta_data'
-require 'wrf_library/entity'
+require "time"
+require "ruby_utils/meta_data"
+require "wrf_library/entity"
 
 module WrfLibrary
 

@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-10 18:23:09
+# @Last Modified time: 2020-09-20 16:59:11
 
-require 'ruby_utils/file_reader'
-require 'ruby_utils/data_repository'
-require 'wrf_library/wrf_meta_data'
+require "ruby_utils/file_reader"
+require "ruby_utils/data_repository"
+require "wrf_library/wrf_meta_data"
 
 module WrfLibrary
 
@@ -28,7 +28,7 @@ module WrfLibrary
       # @param [Float] duration the optional forecast duration
       # @param [Float] offset the optional offset when to start with the data
       def initialize(filename, start_date, duration=Float::MAX, offset=0.0)
-        data = RubyUtils::FileReader.new(filename, ' ').data
+        data = RubyUtils::FileReader.new(filename, " ").data
         # create meta data from first entry
         meta_data = WrfMetaData.new(data[0], start_date)
         data.delete_at(0)

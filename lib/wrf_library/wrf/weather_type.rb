@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2018-02-05 19:47:02
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-02-25 21:18:20
+# @Last Modified time: 2020-09-20 16:58:57
 
 module WrfLibrary
 
@@ -23,15 +23,15 @@ module WrfLibrary
 
       def fill_mapping
         @mapping = Hash.new()
-        @mapping['2mt'] = :temperature         # 2 m temperature
-        @mapping['slp'] = :sea_pressure        # surface pressure
-        @mapping['uvs'] = :wind_speed          # wind speed
-        @mapping['uvd'] = :wind_direction      # wind direction
-        @mapping['skt'] = :skin_temperature    # skin temperature
-        @mapping['sot'] = :soil_temoerature    # top soil level temperature
-        @mapping['swr'] = :shortwave_radiation # shortwave radiation
-        @mapping['lwr'] = :longwave_radiation  # longwave radiation
-        @mapping['pcp'] = :precipitation       # precipitation
+        @mapping["2mt"] = :temperature         # 2 m temperature
+        @mapping["slp"] = :sea_pressure        # surface pressure
+        @mapping["uvs"] = :wind_speed          # wind speed
+        @mapping["uvd"] = :wind_direction      # wind direction
+        @mapping["skt"] = :skin_temperature    # skin temperature
+        @mapping["sot"] = :soil_temoerature    # top soil level temperature
+        @mapping["swr"] = :shortwave_radiation # shortwave radiation
+        @mapping["lwr"] = :longwave_radiation  # longwave radiation
+        @mapping["pcp"] = :precipitation       # precipitation
       end
 
     end

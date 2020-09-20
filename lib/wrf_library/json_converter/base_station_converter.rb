@@ -2,10 +2,10 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-02 18:44:47
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-10 18:23:27
+# @Last Modified time: 2020-09-20 16:58:36
 
-require 'ruby_utils/data_repository'
-require 'ruby_utils/string'
+require "ruby_utils/data_repository"
+require "ruby_utils/string"
 
 module WrfLibrary
 
