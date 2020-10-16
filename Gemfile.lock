@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/SettRaziel/ruby_utils
-  revision: bd245ff6c1738f3c530ce0dd74b530772d87430c
+  revision: 3fb49dc667d6db6311d4319560195898fde9fc46
   specs:
     ruby_utils (0.0.1)
 
@@ -45,7 +45,7 @@ GEM
     term-ansicolor (1.7.1)
       tins (~> 1.0)
     thor (1.0.1)
-    tins (1.25.0)
+    tins (1.26.0)
       sync
 
 PLATFORMS
