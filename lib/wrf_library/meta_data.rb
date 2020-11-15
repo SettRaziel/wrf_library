@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-05 20:10:11
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-11-07 18:32:44
+# @Last Modified time: 2020-11-15 20:06:22
 
 require "time"
 require "ruby_utils/meta_data"
@@ -10,7 +10,7 @@ require "wrf_library/entity"
 module WrfLibrary
 
   # Childclass that represents the meta data of a wrf station output
-  class WrfMetaData < RubyUtils::MetaData
+  class MetaData < RubyUtils::MetaData
 
     # @return [GridPoint] the corresponding grid point
     attr_reader :grid_data

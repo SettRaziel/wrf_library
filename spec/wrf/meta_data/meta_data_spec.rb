@@ -2,19 +2,19 @@
 # @Author: Benjamin Held
 # @Date:   2020-03-01 13:59:08
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-11-14 21:55:43
+# @Last Modified time: 2020-11-15 20:07:48
 
 require "spec_helper"
 require "time"
 
-describe WrfLibrary::WrfMetaData do
+describe WrfLibrary::MetaData do
 
   describe ".new" do
     context "given an array with the header information" do
       it "create meta data and have the correct station name" do
         header = [ "Berlin", "1", "5", "Ber", "(", "52.490,", "13.360)", "(", "222,", "185)",
                    "(", "52.469,",  "13.371)", "44.2" "meters" ]
-        meta_data = WrfLibrary::WrfMetaData.new(header, Time.now())
+        meta_data = WrfLibrary::MetaData.new(header, Time.now())
         expect(meta_data.station.name).to eq("Berlin")
       end
     end
@@ -25,7 +25,7 @@ describe WrfLibrary::WrfMetaData do
       it "create meta data and have the correct station name" do
         header = [ "Los_Realejos", "1", "3", "Lor", "(", "28.370,", "-16.580)", "(", "152,", "157)",
                    "(", "28.379,", "-16.590)", "442.3", "meters" ]
-        meta_data = WrfLibrary::WrfMetaData.new(header, Time.now())
+        meta_data = WrfLibrary::MetaData.new(header, Time.now())
         expect(meta_data.station.name).to eq("Los Realejos")
       end
     end
@@ -34,7 +34,7 @@ describe WrfLibrary::WrfMetaData do
   describe ".new" do
     context "given a meteogram output file and the date" do
       it "read the file and have meta data in the handler" do
-        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
+        handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
         expect(handler.data_repository.meta_data).to be_truthy
       end
     end
@@ -43,7 +43,7 @@ describe WrfLibrary::WrfMetaData do
   describe ".new" do
     context "given a meteogram output file and the date" do
       it "read the file and have the correct grid point data" do
-        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
+        handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
         geo_point = handler.data_repository.meta_data.grid_data.grid_point
         expect(geo_point.x).to eq(222)
         expect(geo_point.y).to eq(185)
@@ -54,7 +54,7 @@ describe WrfLibrary::WrfMetaData do
   describe ".new" do
     context "given a meteogram output file and the date" do
       it "read the file and have the correct grid coordinate data" do
-        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
+        handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
         grid_coordinate = handler.data_repository.meta_data.grid_data.grid_coordinates
         expect(grid_coordinate.x).to eq(13.371)
         expect(grid_coordinate.y).to eq(52.469)
@@ -65,7 +65,7 @@ describe WrfLibrary::WrfMetaData do
   describe ".new" do
     context "given a meteogram output file and the date" do
       it "read the file and have the correct station name" do
-        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
+        handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
         station = handler.data_repository.meta_data.station
         expect(station.name).to eq("Berlin")
       end
@@ -75,7 +75,7 @@ describe WrfLibrary::WrfMetaData do
   describe ".new" do
     context "given a meteogram output file and the date" do
       it "read the file and have the correct station description" do
-        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
+        handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
         station = handler.data_repository.meta_data.station
         expect(station.descriptor).to eq("Ber")
       end
@@ -85,7 +85,7 @@ describe WrfLibrary::WrfMetaData do
   describe ".new" do
     context "given a meteogram output file and the date" do
       it "read the file and have the correct station elevation" do
-        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
+        handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
         station = handler.data_repository.meta_data.station
         expect(station.elevation).to eq(44.2)
       end
@@ -95,7 +95,7 @@ describe WrfLibrary::WrfMetaData do
   describe ".new" do
     context "given a meteogram output file and the date" do
       it "read the file and have the correct station elevation" do
-        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
+        handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), Time.now())
         station_coordinate = handler.data_repository.meta_data.station.coordinate
         expect(station_coordinate.x).to eq(13.360)        
         expect(station_coordinate.y).to eq(52.490)
@@ -107,7 +107,7 @@ describe WrfLibrary::WrfMetaData do
     context "given a meteogram output file and the date" do
       it "read the file and have the correct timestamp" do
         timestamp = Time.parse("2019-06-29 12:00 UTC")
-        handler = WrfLibrary::Wrf::WrfHandler.new(File.join(__dir__,"Ber.d01.TS"), timestamp)
+        handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), timestamp)
         start_time = handler.data_repository.meta_data.start_date
         expect(start_time).to eq(timestamp)        
       end

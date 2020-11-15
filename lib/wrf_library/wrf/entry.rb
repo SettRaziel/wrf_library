@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-01 18:11:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-11-15 19:58:55
+# @Last Modified time: 2020-11-15 20:04:07
 
 module WrfLibrary
 
@@ -9,7 +9,7 @@ module WrfLibrary
   module Wrf
 
     # Simple data class to represent an entry of the wrf station output
-    class WrfEntry
+    class Entry
 
       # @return [Time] timestamp of the forecast data
       attr_accessor :forecast_time   

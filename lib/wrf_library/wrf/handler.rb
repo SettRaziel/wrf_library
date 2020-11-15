@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-11-15 20:02:13
+# @Last Modified time: 2020-11-15 20:10:22
 
 require "ruby_utils/file_reader"
 require "ruby_utils/data_repository"
-require "wrf_library/wrf_meta_data"
+require "wrf_library/meta_data"
 
 module WrfLibrary
 
@@ -15,7 +15,7 @@ module WrfLibrary
     # The data can be added completely be leaving the optional values of the constructor
     # unchanged. But it also can be read only a subset of the provided data by setting
     # a duration and an offset
-    class WrfHandler
+    class Handler
 
       # @return [DataRepository] the data repository for the data
       attr_reader :data_repository
@@ -30,7 +30,7 @@ module WrfLibrary
       def initialize(filename, start_date, duration=Float::MAX, offset=0.0)
         data = RubyUtils::FileReader.new(filename, " ").data
         # create meta data from first entry
-        meta_data = WrfMetaData.new(data[0], start_date)
+        meta_data = MetaData.new(data[0], start_date)
         data.delete_at(0)
         @data_repository = RubyUtils::DataRepository.new(meta_data)
         fill_repository(data, duration, offset, start_date)
@@ -80,7 +80,7 @@ module WrfLibrary
       # @param [Time] start_date the starting date and time of the model results      
       # @return [WrfEntry] the created entry
       def create_wrf_entry(elements, start_date)
-        entry = WrfEntry.new()
+        entry = Entry.new()
         entry.forecast_time = start_date + elements[1].to_f * 3600
         entry.air_temperature = elements[5].to_f
         entry.mixing_ratio = elements[6].to_f
