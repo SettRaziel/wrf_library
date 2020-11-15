@@ -9,7 +9,7 @@
         "y": 52.49
       }
     },
-    "start_date": "2020-06-29",
+    "start_date": "2020-06-29 12:00:00 UTC",
     "grid_point": {
       "grid_point": {
         "x": 222.0,
@@ -25,7 +25,7 @@
   },
   "weather_data": [
     {
-      "@forecast_time": 0.002778,
+      "@forecast_time": "2020-06-29 12:00:10 UTC",
       "@air_temperature": 294.71613,
       "@mixing_ratio": 0.00854,
       "@u_wind": 1.61007,
@@ -42,7 +42,7 @@
       "@water_vapor": 0.00266
     },
     {
-      "@forecast_time": 0.005833,
+      "@forecast_time": "2020-06-29 12:00:20 UTC",
       "@air_temperature": 294.30182,
       "@mixing_ratio": 0.00848,
       "@u_wind": 1.62439,
@@ -59,7 +59,7 @@
       "@water_vapor": 0.00249
     },
     {
-      "@forecast_time": 0.009194,
+      "@forecast_time": "2020-06-29 12:00:33 UTC",
       "@air_temperature": 294.06345,
       "@mixing_ratio": 0.00845,
       "@u_wind": 1.64508,
@@ -76,7 +76,7 @@
       "@water_vapor": 0.00169
     },
     {
-      "@forecast_time": 0.012892,
+      "@forecast_time": "2020-06-29 12:00:46 UTC",
       "@air_temperature": 293.95084,
       "@mixing_ratio": 0.00843,
       "@u_wind": 1.66916,
@@ -93,7 +93,7 @@
       "@water_vapor": 0.00121
     },
     {
-      "@forecast_time": 0.016958,
+      "@forecast_time": "2020-06-29 12:01:01 UTC",
       "@air_temperature": 293.83066,
       "@mixing_ratio": 0.00841,
       "@u_wind": 1.69202,

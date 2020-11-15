@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-01 18:11:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-03-13 14:46:00
+# @Last Modified time: 2020-11-15 19:58:55
 
 module WrfLibrary
 
@@ -11,7 +11,7 @@ module WrfLibrary
     # Simple data class to represent an entry of the wrf station output
     class WrfEntry
 
-      # @return [Date] forecast time in hours
+      # @return [Time] timestamp of the forecast data
       attr_accessor :forecast_time   
       # @return [Float] 2 m Temperature (K)
       attr_accessor :air_temperature

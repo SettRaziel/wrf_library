@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-11-03 18:52:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-09-20 16:59:11
+# @Last Modified time: 2020-11-15 20:02:13
 
 require "ruby_utils/file_reader"
 require "ruby_utils/data_repository"
@@ -33,7 +33,7 @@ module WrfLibrary
         meta_data = WrfMetaData.new(data[0], start_date)
         data.delete_at(0)
         @data_repository = RubyUtils::DataRepository.new(meta_data)
-        fill_repository(data, duration, offset)
+        fill_repository(data, duration, offset, start_date)
       end
 
       # method to retrieve the complete data series for a given attribute
@@ -59,11 +59,13 @@ module WrfLibrary
       # @param [Array] data the unformatted input data
       # @param [Float] duration the forecast duration
       # @param [Float] offset the offset when to start with the data addition
-      def fill_repository(data, duration, offset)
+      # @param [Time] start_date the starting date and time of the model results
+      def fill_repository(data, duration, offset, start_date)
         data.each { |line|
-          next if (line[1].to_f < offset)
-          entry = create_wrf_entry(line, offset)
-          if (entry.forecast_time <= duration)
+          forecast_hours = line[1].to_f
+          next if (forecast_hours < offset)
+          entry = create_wrf_entry(line, start_date)
+          if (forecast_hours - offset <= duration)
             @data_repository.add_data_entry(entry)
           else
             break
@@ -75,12 +77,11 @@ module WrfLibrary
 
       # method to create a new entry that can be put in the repository
       # @param [Array] elements the elements of a single line for an entry
-      # @param [Float] offset the offset which needs tu be subtracted 
-      # from the time forecast time
+      # @param [Time] start_date the starting date and time of the model results      
       # @return [WrfEntry] the created entry
-      def create_wrf_entry(elements, offset)
+      def create_wrf_entry(elements, start_date)
         entry = WrfEntry.new()
-        entry.forecast_time = elements[1].to_f - offset
+        entry.forecast_time = start_date + elements[1].to_f * 3600
         entry.air_temperature = elements[5].to_f
         entry.mixing_ratio = elements[6].to_f
         entry.u_wind = elements[7].to_f
