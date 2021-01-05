@@ -2,25 +2,25 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:45:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-04 19:38:40
+# @Last Modified time: 2021-01-05 19:00:19
 
 require "spec_helper"
 require "wrf_library/sun_equation"
 
 describe WrfLibrary::SunEquation do
 
-  describe "#calculate_current_julian_day" do
+  describe "#calculate_current_day_of_year" do
     context "given a date" do
-      it "calculate the julian day for at in reference to jan 1th 2000" do
-        expect(WrfLibrary::SunEquation.calculate_current_julian_day(DateTime.new(2000,1,1,12))).to eq(0.0008)
+      it "calculate the date of the year for the given date" do
+        expect(WrfLibrary::SunEquation.calculate_current_day_of_year(DateTime.new(2014,1,29,12,00,00,"+06:00"))).to eq(29.75)
       end
     end
   end
 
-  describe "#calculate_current_julian_day" do
+  describe "#calculate_current_day_of_year" do
     context "given a date" do
-      it "calculate the julian day for at in reference to jan 1th 2000" do
-        expect(WrfLibrary::SunEquation.calculate_current_julian_day(DateTime.new(2014,6,29,12))).to eq(5293.0008)
+      it "calculate the date of the year for the given date" do
+        expect(WrfLibrary::SunEquation.calculate_current_day_of_year(DateTime.new(2014,6,29,12))).to eq(180.5)
       end
     end
   end
@@ -69,6 +69,22 @@ describe WrfLibrary::SunEquation do
     context "given an angle in degree" do
       it "calculate the corresponding angle in radians" do
         expect(WrfLibrary::SunEquation.convert_degree_to_radiant(22.75)).to eq(0.39706240482870997)
+      end
+    end
+  end
+
+  describe "#calculate_solar_mean_anomaly" do
+    context "given an angle in degree" do
+      it "calculate the corresponding angle in radians" do
+        expect(WrfLibrary::SunEquation.calculate_solar_mean_anomaly(DateTime.new(2014,6,25,12,00,00,"-04:00"))).to eq(170.5051827066667)
+      end
+    end
+  end
+
+  describe "#calculate_center_equation" do
+    context "given an date" do
+      it "calculate the corresponding center equation" do
+        expect(WrfLibrary::SunEquation.calculate_center_equation(DateTime.new(2014,6,25,12,00,00,"-04:00"))).to eq(93.44853709076602)
       end
     end
   end
