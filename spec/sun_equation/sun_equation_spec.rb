@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:45:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-05 19:00:19
+# @Last Modified time: 2021-01-06 19:49:30
 
 require "spec_helper"
 require "wrf_library/sun_equation"
@@ -12,7 +12,9 @@ describe WrfLibrary::SunEquation do
   describe "#calculate_current_day_of_year" do
     context "given a date" do
       it "calculate the date of the year for the given date" do
-        expect(WrfLibrary::SunEquation.calculate_current_day_of_year(DateTime.new(2014,1,29,12,00,00,"+06:00"))).to eq(29.75)
+        expect(
+          WrfLibrary::SunEquation.calculate_current_day_of_year(DateTime.new(2014,1,29,12,00,00,"+06:00"),13.3,:rise).round(3)
+          ).to eq(29.213)
       end
     end
   end
@@ -20,7 +22,19 @@ describe WrfLibrary::SunEquation do
   describe "#calculate_current_day_of_year" do
     context "given a date" do
       it "calculate the date of the year for the given date" do
-        expect(WrfLibrary::SunEquation.calculate_current_day_of_year(DateTime.new(2014,6,29,12))).to eq(180.5)
+        expect(
+          WrfLibrary::SunEquation.calculate_current_day_of_year(DateTime.new(2014,6,29,12),13.3,:sunset).round(3)
+          ).to eq(180.713)
+      end
+    end
+  end
+
+  describe "#calculate_current_day_of_year" do
+    context "given a date" do
+      it "calculate the date of the year for the given date" do
+        expect(
+          WrfLibrary::SunEquation.calculate_current_day_of_year(DateTime.new(2021,6,25),-74.3,:rise).round(3)
+          ).to eq(176.456)
       end
     end
   end
@@ -76,7 +90,9 @@ describe WrfLibrary::SunEquation do
   describe "#calculate_solar_mean_anomaly" do
     context "given an angle in degree" do
       it "calculate the corresponding angle in radians" do
-        expect(WrfLibrary::SunEquation.calculate_solar_mean_anomaly(DateTime.new(2014,6,25,12,00,00,"-04:00"))).to eq(170.5051827066667)
+        expect(
+          WrfLibrary::SunEquation.calculate_solar_mean_anomaly(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,:rise).round(3)
+          ).to eq(170.626)
       end
     end
   end
@@ -84,7 +100,9 @@ describe WrfLibrary::SunEquation do
   describe "#calculate_center_equation" do
     context "given an date" do
       it "calculate the corresponding center equation" do
-        expect(WrfLibrary::SunEquation.calculate_center_equation(DateTime.new(2014,6,25,12,00,00,"-04:00"))).to eq(93.44853709076602)
+        expect(
+          WrfLibrary::SunEquation.calculate_center_equation(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,:rise).round(3)
+          ).to eq(93.566)
       end
     end
   end
