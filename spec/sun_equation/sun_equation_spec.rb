@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:45:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-06 19:49:30
+# @Last Modified time: 2021-01-06 20:26:58
 
 require "spec_helper"
 require "wrf_library/sun_equation"
@@ -103,6 +103,15 @@ describe WrfLibrary::SunEquation do
         expect(
           WrfLibrary::SunEquation.calculate_center_equation(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,:rise).round(3)
           ).to eq(93.566)
+      end
+    end
+  end
+
+  describe "#calculate_sun_ascension" do
+    context "given an date" do
+      it "calculate the corresponding sun ascension" do
+        ce = WrfLibrary::SunEquation.calculate_center_equation(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,:rise)
+        expect(WrfLibrary::SunEquation.calculate_sun_ascension(ce).round(3)).to eq(93.886)
       end
     end
   end

@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:34:22
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-06 19:58:18
+# @Last Modified time: 2021-01-07 18:40:52
 
 require "date"
 
@@ -59,6 +59,17 @@ module WrfLibrary
       rad_m = convert_degree_to_radiant(m)
       l = m + 1.9148 * Math.sin(rad_m) + 0.02 * Math.sin(2*rad_m) + 282.634
       normalize_angle(l)
+    end
+
+    # method to calculate the sun ascension value
+    # @param [Float] center_equation the result vaule of the center equation
+    # @return [Float] the sun ascension value
+    def self.calculate_sun_ascension(center_equation)
+      ra = Math.atan(0.91746 * Math.tan(convert_degree_to_radiant(center_equation)))
+      ran = normalize_angle(convert_radiant_to_degree(ra))
+      sun_quadrant = (center_equation / 90.0).floor * 90
+      ascension_quadrant = (ran / 90.0).floor * 90
+      ran + (sun_quadrant - ascension_quadrant)
     end
 
   end
