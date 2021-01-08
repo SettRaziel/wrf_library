@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:45:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-06 20:26:58
+# @Last Modified time: 2021-01-08 22:38:30
 
 require "spec_helper"
 require "wrf_library/sun_equation"
@@ -88,7 +88,7 @@ describe WrfLibrary::SunEquation do
   end
 
   describe "#calculate_solar_mean_anomaly" do
-    context "given an angle in degree" do
+    context "given a date and longitude" do
       it "calculate the corresponding angle in radians" do
         expect(
           WrfLibrary::SunEquation.calculate_solar_mean_anomaly(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,:rise).round(3)
@@ -98,7 +98,7 @@ describe WrfLibrary::SunEquation do
   end
 
   describe "#calculate_center_equation" do
-    context "given an date" do
+    context "given a date and longitude" do
       it "calculate the corresponding center equation" do
         expect(
           WrfLibrary::SunEquation.calculate_center_equation(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,:rise).round(3)
@@ -108,10 +108,29 @@ describe WrfLibrary::SunEquation do
   end
 
   describe "#calculate_sun_ascension" do
-    context "given an date" do
+    context "given a date and longitude" do
       it "calculate the corresponding sun ascension" do
         ce = WrfLibrary::SunEquation.calculate_center_equation(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,:rise)
         expect(WrfLibrary::SunEquation.calculate_sun_ascension(ce).round(3)).to eq(93.886)
+      end
+    end
+  end
+
+  describe "#calculate_sun_declination" do
+    context "given a date and longitude" do
+      it "calculate the corresponding sun declination" do
+        ce = WrfLibrary::SunEquation.calculate_center_equation(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,:rise)
+        expect(Math.sin(WrfLibrary::SunEquation.calculate_sun_declination(ce)).round(3)).to eq(0.397)
+      end
+    end
+  end  
+
+  describe "#calculate_local_hour_angle" do
+    context "given a date, longitude and latitude" do
+      it "calculate the corresponding sun local hour angle" do
+        expect(
+          WrfLibrary::SunEquation.calculate_local_hour_angle(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,40.9,:rise)
+          .round(3)).to eq(246.690)
       end
     end
   end
