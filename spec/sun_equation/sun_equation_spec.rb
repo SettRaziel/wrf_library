@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:45:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-08 22:38:30
+# @Last Modified time: 2021-01-09 17:05:02
 
 require "spec_helper"
 require "wrf_library/sun_equation"
@@ -131,6 +131,56 @@ describe WrfLibrary::SunEquation do
         expect(
           WrfLibrary::SunEquation.calculate_local_hour_angle(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,40.9,:rise)
           .round(3)).to eq(246.690)
+      end
+    end
+  end
+
+  describe "#calculate_local_event_time" do
+    context "given a date, longitude and latitude" do
+      it "calculate the corresponding local event time" do
+        expect(
+          WrfLibrary::SunEquation.calculate_local_event_time(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,40.9,:rise)
+          .round(3)).to eq(4.488)
+      end
+    end
+  end
+
+  describe "#calculate_event_time" do
+    context "given a date, longitude and latitude for Wayne, New Jersey" do
+      it "calculate the corresponding event time" do
+        expect(
+          WrfLibrary::SunEquation.calculate_event_time(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,40.9,:rise)
+          .round(3)).to eq(9.441)
+      end
+    end
+  end
+
+  describe "#calculate_sunrise_time" do
+    context "given a date, longitude and latitude for Wayne, New Jersey" do
+      it "calculate the corresponding event time in its local timezone" do
+        expect(
+          WrfLibrary::SunEquation.calculate_sunrise_time(DateTime.new(2014,6,25,12,00,00,"-04:00"),-74.3,40.9)
+          .round(3)).to eq(5.441)
+      end
+    end
+  end
+
+  describe "#calculate_sunrise_time" do
+    context "given a date, longitude and latitude for Berlin" do
+      it "calculate the corresponding event time in its local timezone" do
+        expect(
+          WrfLibrary::SunEquation.calculate_sunrise_time(DateTime.new(2021,1,9,12,0,0,"+01:00"),13.39,52.514)
+          .round(3)).to eq(8.246) # 08:14 Uhr
+      end
+    end
+  end
+
+  describe "#calculate_sunset_time" do
+    context "given a date, longitude and latitude for Berlin" do
+      it "calculate the corresponding event time in its local timezone" do
+        expect(
+          WrfLibrary::SunEquation.calculate_sunset_time(DateTime.new(2021,1,9),13.39,52.514)
+          .round(3)).to eq(15.214) # 16:13 Uhr, because default timezone is utc
       end
     end
   end

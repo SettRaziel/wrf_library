@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:34:22
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-08 22:38:08
+# @Last Modified time: 2021-01-09 16:47:31
 
 require "date"
 
@@ -99,8 +99,36 @@ module WrfLibrary
       declination = calculate_sun_declination(center_equation)
       cos_h = (@@cos_z - Math.sin(declination) * Math.sin(convert_degree_to_radiant(latitude))) /
               (Math.cos(declination) * Math.cos(convert_degree_to_radiant(latitude)))
-      360.0 - convert_radiant_to_degree(Math.acos(cos_h))
+      return 360.0 - convert_radiant_to_degree(Math.acos(cos_h)) if (event == :rise)
+      convert_radiant_to_degree(Math.acos(cos_h))
     end
+
+    def self.calculate_local_event_time(date=DateTime.now, longitude, latitude, event)
+      h = calculate_local_hour_angle(date, longitude, latitude, event) / 15
+      ascension = calculate_sun_ascension(calculate_center_equation(date, longitude, event))
+      t = calculate_current_day_of_year(date, longitude, event)
+      h + ascension / @@rotation_time - 0.06571* t - 6.622
+    end
+
+    def self.calculate_event_time(date=DateTime.now, longitude, latitude, event)
+      t_l = calculate_local_event_time(date, longitude, latitude, event)
+      t_l - longitude / @@rotation_time
+    end
+
+    def self.calculate_sunrise_time(date=DateTime.now, longitude, latitude)
+      event_utc = calculate_event_time(date, longitude, latitude, :rise)
+      event_utc += 24.0 if (event_utc < 0)
+      event_utc -= 24.0 if (event_utc > 24.0)
+      event_utc + date.offset * 24
+    end
+
+    def self.calculate_sunset_time(date=DateTime.now, longitude, latitude)
+      event_utc = calculate_event_time(date, longitude, latitude, :sunset)
+      event_utc += 24.0 if (event_utc < 0)
+      event_utc -= 24.0 if (event_utc > 24.0)
+      event_utc + date.offset * 24
+    end
+
   end
 
 end
