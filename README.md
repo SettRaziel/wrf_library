@@ -27,11 +27,12 @@ Written with Ruby 2.4.0
 * yard (for documentation only)
 * csv (for reading input files)
 * json (for converting meteogram data)
+* date (for sunset equation)
 
 ## License
 see LICENSE
 
 ## Roadmap
-follows
+see issues
 
 created by: Benjamin Held, June 2018

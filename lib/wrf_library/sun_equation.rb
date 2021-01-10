@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:34:22
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-10 15:36:36
+# @Last Modified time: 2021-01-10 21:49:54
 
 require "date"
 
@@ -10,6 +10,7 @@ module WrfLibrary
 
   # module to calculate the time of the sunrise and sunset for a given location with
   # geo coordinates and the given day as a date
+  # source: https://babel.hathitrust.org/cgi/pt?id=uc1.31822006852784&view=1up&seq=26
   module SunEquation
 
     # @return [Float] the rotation distance per hour
