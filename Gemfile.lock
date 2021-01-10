@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/SettRaziel/ruby_utils
-  revision: f1f841671435cc4d3b0d906de8384a4da0fdebb5
+  revision: d3c4e59e4206454e066eebef3d07f605b21c1328
   specs:
     ruby_utils (0.0.1)
 
 PATH
   remote: .
   specs:
-    wrf_library (0.1.0)
+    wrf_library (0.2.0)
       ruby_utils (~> 0.0.1)
 
 GEM
@@ -27,15 +27,15 @@ GEM
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
       rspec-mocks (~> 3.10.0)
-    rspec-core (3.10.0)
+    rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.0)
+    rspec-expectations (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
-    rspec-mocks (3.10.0)
+    rspec-mocks (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
-    rspec-support (3.10.0)
+    rspec-support (3.10.1)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)

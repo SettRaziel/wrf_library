@@ -5,7 +5,7 @@
 
 This project holds a collection of common scripts and data structures for my ruby WRF forecast projects.
 
-Current version: v0.1.0
+Current version: v0.2.0
 
 ## Usage & Help
 The scripts and classes will be imported in other projects, so there will be not explicit usage.
