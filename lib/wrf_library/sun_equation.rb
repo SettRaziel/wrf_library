@@ -2,12 +2,14 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:34:22
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-09 16:47:31
+# @Last Modified time: 2021-01-10 15:36:36
 
 require "date"
 
 module WrfLibrary
 
+  # module to calculate the time of the sunrise and sunset for a given location with
+  # geo coordinates and the given day as a date
   module SunEquation
 
     # @return [Float] the rotation distance per hour
@@ -103,6 +105,12 @@ module WrfLibrary
       convert_radiant_to_degree(Math.acos(cos_h))
     end
 
+    # method to calculate the local time of the given event
+    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Float] longitude the longitude of the requested location
+    # @param [Float] latitude the latitude of the requested location
+    # @param [Symbol] event the information if sunrise or sunset is requested
+    # @return [Float] the hour and minutes as a decimal float of the event
     def self.calculate_local_event_time(date=DateTime.now, longitude, latitude, event)
       h = calculate_local_hour_angle(date, longitude, latitude, event) / 15
       ascension = calculate_sun_ascension(calculate_center_equation(date, longitude, event))
@@ -110,11 +118,22 @@ module WrfLibrary
       h + ascension / @@rotation_time - 0.06571* t - 6.622
     end
 
+    # method to calculate the time of the given event
+    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Float] longitude the longitude of the requested location
+    # @param [Float] latitude the latitude of the requested location
+    # @param [Symbol] event the information if sunrise or sunset is requested
+    # @return [Float] the hour and minutes as a decimal float of the event
     def self.calculate_event_time(date=DateTime.now, longitude, latitude, event)
       t_l = calculate_local_event_time(date, longitude, latitude, event)
       t_l - longitude / @@rotation_time
     end
 
+    # method to calculate the time of the sunrise fpr the given data
+    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Float] longitude the longitude of the requested location
+    # @param [Float] latitude the latitude of the requested location
+    # @return [Float] the local timezone hour and minutes as a decimal float of the event
     def self.calculate_sunrise_time(date=DateTime.now, longitude, latitude)
       event_utc = calculate_event_time(date, longitude, latitude, :rise)
       event_utc += 24.0 if (event_utc < 0)
@@ -122,6 +141,11 @@ module WrfLibrary
       event_utc + date.offset * 24
     end
 
+    # method to calculate the time of the sunset fpr the given data
+    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Float] longitude the longitude of the requested location
+    # @param [Float] latitude the latitude of the requested location
+    # @return [Float] the local timezone hour and minutes as a decimal float of the event
     def self.calculate_sunset_time(date=DateTime.now, longitude, latitude)
       event_utc = calculate_event_time(date, longitude, latitude, :sunset)
       event_utc += 24.0 if (event_utc < 0)
