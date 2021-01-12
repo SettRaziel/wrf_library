@@ -2,7 +2,7 @@
 # @Author: Benjamin Held
 # @Date:   2020-12-27 14:34:22
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-10 21:49:54
+# @Last Modified time: 2021-01-12 22:41:37
 
 require "date"
 
@@ -42,30 +42,30 @@ module WrfLibrary
     end
 
     # method to get the day of the year for the given date
-    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Symbol] event the information if sunrise or sunset is requested    
     # @return [Float] the current day of the day
-    def self.calculate_current_day_of_year(date=DateTime.now, longitude, event)
+    def self.calculate_current_day_of_year(date=Time.now, longitude, event)
       offset = if (event == :rise) then 6.0 else 18.0 end
       date.yday().to_f + (offset - longitude / @@rotation_time) / 24
     end
 
     # method to calculate the solar mean
-    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Symbol] event the information if sunrise or sunset is requested        
     # @return [Float] the solar mean anomaly
-    def self.calculate_solar_mean_anomaly(date=DateTime.now, longitude, event)
+    def self.calculate_solar_mean_anomaly(date=Time.now, longitude, event)
       0.98560028 * calculate_current_day_of_year(date, longitude, event) - 3.289
     end
 
     # method to calculate the center equation
-    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Symbol] event the information if sunrise or sunset is requested    
     # @return [Float] the center equation
-    def self.calculate_center_equation(date=DateTime.now, longitude, event)
+    def self.calculate_center_equation(date=Time.now, longitude, event)
       m = calculate_solar_mean_anomaly(date, longitude, event)
       rad_m = convert_degree_to_radiant(m)
       l = m + 1.9148 * Math.sin(rad_m) + 0.02 * Math.sin(2*rad_m) + 282.634
@@ -91,12 +91,12 @@ module WrfLibrary
     end
 
     # method to calculate the local hour angle
-    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Float] latitude the latitude of the requested location
     # @param [Symbol] event the information if sunrise or sunset is requested
     # @return [Float] the local hour angle
-    def self.calculate_local_hour_angle(date=DateTime.now, longitude, latitude, event)
+    def self.calculate_local_hour_angle(date=Time.now, longitude, latitude, event)
       center_equation = calculate_center_equation(date, longitude, event)
       ascension = calculate_sun_ascension(center_equation)
       declination = calculate_sun_declination(center_equation)
@@ -107,12 +107,12 @@ module WrfLibrary
     end
 
     # method to calculate the local time of the given event
-    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Float] latitude the latitude of the requested location
     # @param [Symbol] event the information if sunrise or sunset is requested
     # @return [Float] the hour and minutes as a decimal float of the event
-    def self.calculate_local_event_time(date=DateTime.now, longitude, latitude, event)
+    def self.calculate_local_event_time(date=Time.now, longitude, latitude, event)
       h = calculate_local_hour_angle(date, longitude, latitude, event) / 15
       ascension = calculate_sun_ascension(calculate_center_equation(date, longitude, event))
       t = calculate_current_day_of_year(date, longitude, event)
@@ -120,38 +120,38 @@ module WrfLibrary
     end
 
     # method to calculate the time of the given event
-    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Float] latitude the latitude of the requested location
     # @param [Symbol] event the information if sunrise or sunset is requested
     # @return [Float] the hour and minutes as a decimal float of the event
-    def self.calculate_event_time(date=DateTime.now, longitude, latitude, event)
+    def self.calculate_event_time(date=Time.now, longitude, latitude, event)
       t_l = calculate_local_event_time(date, longitude, latitude, event)
       t_l - longitude / @@rotation_time
     end
 
     # method to calculate the time of the sunrise fpr the given data
-    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Float] latitude the latitude of the requested location
     # @return [Float] the local timezone hour and minutes as a decimal float of the event
-    def self.calculate_sunrise_time(date=DateTime.now, longitude, latitude)
+    def self.calculate_sunrise_time(date=Time.now, longitude, latitude)
       event_utc = calculate_event_time(date, longitude, latitude, :rise)
       event_utc += 24.0 if (event_utc < 0)
       event_utc -= 24.0 if (event_utc > 24.0)
-      event_utc + date.offset * 24
+      event_utc + date.gmt_offset / 3600
     end
 
     # method to calculate the time of the sunset fpr the given data
-    # @param [DateTime] date the provided date or the current date if none is given
+    # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Float] latitude the latitude of the requested location
     # @return [Float] the local timezone hour and minutes as a decimal float of the event
-    def self.calculate_sunset_time(date=DateTime.now, longitude, latitude)
+    def self.calculate_sunset_time(date=Time.now, longitude, latitude)
       event_utc = calculate_event_time(date, longitude, latitude, :sunset)
       event_utc += 24.0 if (event_utc < 0)
       event_utc -= 24.0 if (event_utc > 24.0)
-      event_utc + date.offset * 24
+      event_utc + date.gmt_offset / 3600
     end
 
   end
