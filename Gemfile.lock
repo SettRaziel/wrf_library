@@ -1,14 +1,14 @@
 GIT
   remote: https://github.com/SettRaziel/ruby_utils
-  revision: a5f9bfff554cb97947589e570de22f5a3719bf3a
+  revision: af901b26bc00953101b9959e72b7279f7bfa382a
   specs:
-    ruby_utils (0.0.1)
+    ruby_utils (0.1.0)
 
 PATH
   remote: .
   specs:
     wrf_library (0.3.0)
-      ruby_utils (~> 0.0.1)
+      ruby_utils (~> 0.1.0, >= 0.1.0)
 
 GEM
   remote: https://rubygems.org/
