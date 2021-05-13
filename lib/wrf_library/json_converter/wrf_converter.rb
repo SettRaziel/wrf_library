@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2018-07-27 18:54:17
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-09-20 16:58:43
-
 require "wrf_library/wrf"
 
 module WrfLibrary

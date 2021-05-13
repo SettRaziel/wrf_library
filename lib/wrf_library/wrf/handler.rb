@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2017-11-03 18:52:27
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-11-15 20:10:22
-
 require "ruby_utils/file_reader"
 require "ruby_utils/data_repository"
 require "wrf_library/meta_data"

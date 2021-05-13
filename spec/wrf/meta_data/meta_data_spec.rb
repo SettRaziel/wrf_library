@@ -1,9 +1,3 @@
-#!/usr/bin/ruby
-# @Author: Benjamin Held
-# @Date:   2020-03-01 13:59:08
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-11-15 20:07:48
-
 require "spec_helper"
 require "time"
 

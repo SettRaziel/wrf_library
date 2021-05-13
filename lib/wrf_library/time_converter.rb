@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2019-07-06 16:37:12
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-06-03 22:11:40
-
 require "ruby_utils/string"
 require "ruby_utils/parameter_converter"
 

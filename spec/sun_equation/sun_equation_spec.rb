@@ -1,9 +1,3 @@
-#!/usr/bin/ruby
-# @Author: Benjamin Held
-# @Date:   2020-12-27 14:45:56
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-12 22:39:40
-
 require "spec_helper"
 require "wrf_library/sun_equation"
 
