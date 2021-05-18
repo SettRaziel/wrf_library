@@ -19,6 +19,10 @@ begin
   Coveralls.wear!
 rescue LoadError; end
 
+DATA_ROOT = Pathname.new(__dir__).join("files/").expand_path
+BERLIN_DATA_SMALL = DATA_ROOT.join("Ber_d01_small_TS")
+BERLIN_DATA = DATA_ROOT.join("Ber_d01_TS")
+
 require "rspec"
 require "wrf_library"
 

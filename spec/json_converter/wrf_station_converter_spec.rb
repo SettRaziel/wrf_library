@@ -5,7 +5,7 @@ require "time"
 
 describe WrfLibrary::JsonConverter::WrfJsonConverter do
 
-  handler = WrfLibrary::Wrf::Handler.new(File.join(__dir__,"Ber.d01.TS"), Time.parse("2020-06-29 12:00 UTC"))
+  handler = WrfLibrary::Wrf::Handler.new(BERLIN_DATA_SMALL, Time.parse("2020-06-29 12:00 UTC"))
   converter = WrfLibrary::JsonConverter::WrfJsonConverter.new(handler.data_repository)
 
   describe ".convert" do
