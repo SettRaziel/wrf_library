@@ -1,6 +1,7 @@
 require "wrf_library/data"
 require "wrf_library/entity"
 require "wrf_library/json_converter"
+require "wrf_library/statistic"
 require "wrf_library/time_converter"
 require "wrf_library/wrf"
 require "wrf_library/meta_data"
