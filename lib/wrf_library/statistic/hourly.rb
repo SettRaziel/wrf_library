@@ -1,9 +1,15 @@
 module WrfLibrary
 
+  # module to aggregate statistic based logic applied to wrf data
   module Statistic
 
+    # module to generate hourly statistic values for wrf based measurands
     module Hourly
 
+      # method to generate hourly mean values for the given measurand
+      # @param [Symbol] measurand the given measurand
+      # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
+      # @return [Array] the array with the hourly means
       def self.generate_hourly_means(measurand, handler)
         timestamps = handler.retrieve_data_set(:forecast_time)
         data = handler.retrieve_data_set(measurand)
@@ -25,17 +31,17 @@ module WrfLibrary
           value_count += 1
         }
         results << mean / value_count
-        results
       end
 
       # method to sum up the rain data into hourly rain sums
       # for that calculate the difference from the rain value at the start and end
       # of the currently checked hour
+      # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
+      # @return [Array] the array with the hourly values
       def self.calculate_hourly_rainsum(handler)
         timestamps = handler.retrieve_data_set(:forecast_time)
         rain_data = add_rain_data(handler)
         results = Array.new()
-
 
         # when using an offset, start with the current value as delta
         previous_hour = rain_data[0]
