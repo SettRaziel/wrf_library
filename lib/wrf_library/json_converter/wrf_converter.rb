@@ -52,13 +52,14 @@ module WrfLibrary
         return data_array
       end
 
-      # method to create a valid json hash for a given data entry
+      # method to create a valid json hash for a given data entry as 
+      # pair {instance_variable, value}
       # @param [WrfEntry] dataset the given data entry
       # @return [Hash] the key-value hashes for the json output     
       def create_data_hash(dataset)
         data_entries = Hash.new()
         dataset.instance_variables.map{ |ivar| 
-          data_entries[ivar] = dataset.instance_variable_get(ivar)
+          data_entries[ivar.to_s.tr("@", "")] = dataset.instance_variable_get(ivar)
         }
         return data_entries
       end
