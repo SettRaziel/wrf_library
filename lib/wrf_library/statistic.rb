@@ -7,7 +7,7 @@ module WrfLibrary
     # @param [Symbol] measurand the given measurand
     # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
     # @param [Symbol] timespan the time attribute for which the sum should be calculated
-    # @return [Array] the array with the timespan means
+    # @return [Array] the array with the timespan means rounded to 3 significant digits
     def self.calculate_timespan_means(measurand, handler, timespan)
       timestamps = handler.retrieve_data_set(:forecast_time)
       data = handler.retrieve_data_set(measurand)
@@ -19,7 +19,7 @@ module WrfLibrary
       data.zip(timestamps).each { |value, timestamp|
         # detect new hour, when the leading number increases by one
         if (timestamp.send(timespan) != previous_timestamp)
-          results << mean / value_count
+          results << (mean / value_count).round(3)
           mean = 0.0
           value_count = 0
         end
@@ -28,7 +28,7 @@ module WrfLibrary
         mean += value
         value_count += 1
       }
-      results << mean / value_count
+      results << (mean / value_count).round(3)
     end
 
     # method to sum up the rain data into the given timespan rain sums
@@ -36,7 +36,7 @@ module WrfLibrary
     # of the currently checked hour
     # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
     # @param [Symbol] timespan the time attribute for which the sum should be calculated
-    # @return [Array] the array with the timespan sums
+    # @return [Array] the array with the timespan sums rounded to 3 significant digits
     def self.calculate_timespan_rainsum(handler, timespan)
       timestamps = handler.retrieve_data_set(:forecast_time)
       rain_data = add_rain_data(handler)
@@ -48,14 +48,14 @@ module WrfLibrary
       rain_data.zip(timestamps).each { |rain, timestamp|
         # detect new hour, when the leading number increases by one
         if (timestamp.send(timespan) != previous_timestamp)
-          results << rain - previous_timespan
+          results << (rain - previous_timespan).round(3)
           previous_timespan = rain
         end
         previous_timestamp = timestamp.send(timespan)
       }
 
       # workaround to satisfy the current requirement for daily values
-      results << rain_data[rain_data.size-1] - previous_timespan
+      results << (rain_data[rain_data.size-1] - previous_timespan).round(3)
     end
 
     # method to add the rain data from the two different sources
