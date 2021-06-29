@@ -19,6 +19,15 @@ begin
   Coveralls.wear!
 rescue LoadError; end
 
+# @return [Pathname] the path to the directiory with the test data
+DATA_ROOT = Pathname.new(__dir__).join("files/").expand_path
+# @return [Pathname] the path to the minimal Berlin test data
+BERLIN_DATA_SMALL = DATA_ROOT.join("Ber_d01_small_TS")
+# @return [Pathname] the path to the hourly Berlin test data
+BERLIN_DATA_HOUR = DATA_ROOT.join("Ber_d01_hourly_TS")
+# @return [Pathname] the path to the 24 h Berlin test data
+BERLIN_DATA = DATA_ROOT.join("Ber_d01_TS")
+
 require "rspec"
 require "wrf_library"
 

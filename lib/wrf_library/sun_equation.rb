@@ -1,9 +1,3 @@
-#!/usr/bin/ruby
-# @Author: Benjamin Held
-# @Date:   2020-12-27 14:34:22
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2021-01-12 22:41:37
-
 require "date"
 
 module WrfLibrary
