@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2017-11-11 11:22:30
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-02-25 21:17:42
-
 module WrfLibrary
 
   module Entity

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = "wrf_library"
-  s.version       = "0.3.1"
+  s.version       = "0.4.0"
   s.summary       = "Ruby wrf file collection"
   s.description   = "Collection of common scripts and data structures for usage in other wrf related ruby projects"
   s.authors       = ["Benjamin Held"]
@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rake",      '~> 13.0', '>= 13.0.1'
   s.add_development_dependency "rspec", '~> 3.9', '>= 3.9.0'
-  s.add_dependency "ruby_utils", '~> 0.1.0', '>= 0.1.0'
+  s.add_dependency "ruby_utils", '~> 0.2.0', '>= 0.1.0'
 end

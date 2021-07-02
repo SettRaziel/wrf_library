@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2017-11-01 18:11:38
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-11-15 20:04:07
-
 module WrfLibrary
 
   # This module holds wrf specific data classes and handlers

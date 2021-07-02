@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2017-11-05 20:22:28
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-08-10 18:20:47
-
 module WrfLibrary
 
   # This module holds basic entity classes that represent entity information of 

@@ -1,9 +1,3 @@
-#!/usr/bin/ruby
-# @Author: Benjamin Held
-# @Date:   2020-05-23 21:03:43
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-05-23 21:12:00
-
 require "spec_helper"
 require "wrf_library/time_converter"
 

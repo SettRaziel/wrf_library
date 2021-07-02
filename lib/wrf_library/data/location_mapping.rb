@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2019-06-28 16:45:16
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2020-06-18 22:18:23
-
 require "ruby_utils/file_reader"
 require "ruby_utils/string"
 
