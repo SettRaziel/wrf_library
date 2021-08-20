@@ -1,7 +1,6 @@
 # WRF library
-[![Build Status](https://travis-ci.org/SettRaziel/wrf_library.svg?branch=master)](https://travis-ci.org/SettRaziel/wrf_library)
+[![Ruby](https://github.com/SettRaziel/wrf_library/actions/workflows/ruby.yml/badge.svg?branch=development)](https://github.com/SettRaziel/wrf_library/actions/workflows/ruby.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8e22d6851e065fddf8a3/maintainability)](https://codeclimate.com/github/SettRaziel/wrf_library/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/SettRaziel/wrf_library/badge.svg?branch=master)](https://coveralls.io/github/SettRaziel/wrf_library?branch=master)
 
 This project holds a collection of common scripts and data structures for my ruby WRF forecast projects.
 
