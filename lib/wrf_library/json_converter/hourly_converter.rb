@@ -24,14 +24,6 @@ module WrfLibrary
       # @return [Symbol] the used measurand
       attr_reader :measurand
 
-      # implementation of the abstract parent method to create valid json objects
-      # for the stored data values
-      # @return [Hash] the key-value hashes for the json output 
-      def generate_data_values
-        {@measurand.to_s.tr("@", "") => 
-          WrfLibrary::Statistic::Hourly.calculate_hourly_rainsum(handler) }
-      end
-
     end
 
   end
