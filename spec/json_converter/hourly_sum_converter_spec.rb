@@ -3,7 +3,7 @@ require "wrf_library/json_converter"
 require "fileutils"
 require "time"
 
-describe WrfLibrary::JsonConverter::WrfJsonConverter do
+describe WrfLibrary::JsonConverter::HourlySumJsonConverter do
 
   handler = WrfLibrary::Wrf::Handler.new(BERLIN_DATA_HOUR, Time.parse("2020-06-29 12:00 UTC"))
   converter = WrfLibrary::JsonConverter::HourlySumJsonConverter.new(:rainsum, handler)

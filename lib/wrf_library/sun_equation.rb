@@ -92,7 +92,6 @@ module WrfLibrary
     # @return [Float] the local hour angle
     def self.calculate_local_hour_angle(date=Time.now, longitude, latitude, event)
       center_equation = calculate_center_equation(date, longitude, event)
-      ascension = calculate_sun_ascension(center_equation)
       declination = calculate_sun_declination(center_equation)
       cos_h = (@@cos_z - Math.sin(declination) * Math.sin(convert_degree_to_radiant(latitude))) /
               (Math.cos(declination) * Math.cos(convert_degree_to_radiant(latitude)))
