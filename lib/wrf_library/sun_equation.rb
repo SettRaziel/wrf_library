@@ -13,14 +13,14 @@ module WrfLibrary
     @@cos_z = -0.01454
 
     # helper method to convert a radiant value into degrees
-    # @param [Float] the angel in radians
+    # @param [Float] angle the angel in radians
     # @return [Float] the angle in degree
     def self.convert_radiant_to_degree(angle)
       angle * 180 / Math::PI
     end
 
     # helper method to convert a degree value into radians
-    # @param [Float] the angle in degrees
+    # @param [Float] angle the angle in degrees
     # @return [Float] the angle in radians
     def self.convert_degree_to_radiant(angle)
       angle * Math::PI / 180
@@ -78,7 +78,7 @@ module WrfLibrary
     end
 
     # method to calculate the sun declination value
-    # @param [Float] the result of the center equation
+    # @param [Float] center_equation the result of the center equation
     # @return [Float] the sun declination value
     def self.calculate_sun_declination(center_equation)
       Math.asin(0.39782 * Math.sin(convert_degree_to_radiant(center_equation)))
