@@ -11,24 +11,26 @@ module WrfLibrary
     def self.calculate_timespan_means(measurand, handler, timespan)
       timestamps = handler.retrieve_data_set(:forecast_time)
       data = handler.retrieve_data_set(measurand)
-      results = Array.new()
-      value_count = 0
-      mean = 0.0
+      calculate_hourly_means(timestamps, timespan, data)
+    end
 
-      previous_timestamp = timestamps[0].send(timespan)
-      data.zip(timestamps).each { |value, timestamp|
-        # detect new hour, when the leading number increases by one
-        if (timestamp.send(timespan) != previous_timestamp)
-          results << (mean / value_count).round(3)
-          mean = 0.0
-          value_count = 0
-        end
-
-        previous_timestamp = timestamp.send(timespan)
-        mean += value
-        value_count += 1
+    # method to sum up the rain data into the given timespan rain sums
+    # for that calculate the difference from the rain value at the start and end
+    # of the currently checked hour
+    # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
+    # @param [Symbol] timespan the time attribute for which the sum should be calculated
+    # @return [Array] the array with the timespan sums rounded to 3 significant digits
+    def self.calculate_timespan_windspeed_means(handler, timespan)
+      timestamps = handler.retrieve_data_set(:forecast_time)
+      r2d = 180.0 / (Math.atan(1) * 4.0)
+      u_component = handler.retrieve_data_set(:u_wind)
+      v_component = handler.retrieve_data_set(:v_wind)
+      wind_speed = Array.new()
+      u_component.zip(v_component).each { |u, v| 
+        wind_speed << Math.sqrt(u**2+v**2)
       }
-      results << (mean / value_count).round(3)
+
+      calculate_hourly_means(timestamps, timespan, wind_speed)
     end
 
     # method to sum up the rain data into the given timespan rain sums
@@ -68,6 +70,27 @@ module WrfLibrary
         rain_data << c + e
       }
       rain_data
+    end
+
+    private_class_method def self.calculate_hourly_means(timestamps, timespan, data)
+      results = Array.new()
+      value_count = 0
+      mean = 0.0
+
+      previous_timestamp = timestamps[0].send(timespan)
+      data.zip(timestamps).each { |value, timestamp|
+        # detect new hour, when the leading number increases by one
+        if (timestamp.send(timespan) != previous_timestamp)
+          results << (mean / value_count).round(3)
+          mean = 0.0
+          value_count = 0
+        end
+
+        previous_timestamp = timestamp.send(timespan)
+        mean += value
+        value_count += 1
+      }
+      results << (mean / value_count).round(3)
     end
 
   end
