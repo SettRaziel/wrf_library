@@ -62,6 +62,7 @@ module WrfLibrary
 
     # method to add the rain data from the two different sources
     # @param [WrfHandler] handler the wrf handler with the data
+    # @return [Array] the cumulated rain data of cumulus and explizit rainsums
     private_class_method def self.add_rain_data(handler)
       cumulus_rain = handler.retrieve_data_set(:cumulus_rainfall)
       explicit_rain = handler.retrieve_data_set(:explicit_rainfall)
@@ -72,6 +73,11 @@ module WrfLibrary
       rain_data
     end
 
+    # method to create the wind speed from its u and v component vector
+    # @param [Array] timestamps the array with the timestamps of the data
+    # @param [Symbol] timespan the time attribute for which the sum should be calculated
+    # @param [Array] data the data values
+    # @return [Array] the hourly means of the input data
     private_class_method def self.calculate_hourly_means(timestamps, timespan, data)
       results = Array.new()
       value_count = 0
