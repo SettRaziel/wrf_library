@@ -10,8 +10,7 @@ module WrfLibrary
         fill_mapping
       end
 
-      # @return [Hash] the mapping between input strings and the corresponding
-      #                symbols 
+      # @return [Hash] the mapping between input strings and the corresponding symbols 
       attr_reader :mapping
 
       private

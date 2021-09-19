@@ -14,8 +14,13 @@ module WrfLibrary
       # for the stored data values
       # @return [Hash] the key-value hashes for the json output 
       def generate_data_values
-        {@measurand.to_s.tr("@", "") => 
-          WrfLibrary::Statistic::Hourly.calculate_hourly_means(@measurand, @handler) }
+        if (@measurand == :wind_speed)
+          {"wind_speed" => 
+            WrfLibrary::Statistic::Hourly.calculate_hourly_windspeed_means(@handler) }
+        else
+          {@measurand.to_s.tr("@", "") => 
+            WrfLibrary::Statistic::Hourly.calculate_hourly_means(@measurand, @handler) }
+        end
       end
 
     end
