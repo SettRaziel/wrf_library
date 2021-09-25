@@ -48,7 +48,6 @@ describe WrfLibrary::JsonConverter::HourlyMeanJsonConverter do
       it "read it and create the correct json output" do
         converter = WrfLibrary::JsonConverter::HourlyMeanJsonConverter.new(:wind_speed, handler)
         converter.convert(__dir__)
-        puts File.read(File.join(__dir__,"output.json"))
         expect(FileUtils.compare_file(File.join(__dir__,"output.json"), File.join(__dir__,"expected_hourly_mean_wind_speed.json"))).to be_truthy
 
         # clean up data from the test and catch errors since they should not let the test fail
