@@ -1,7 +1,9 @@
+require "wrf_library/statistic/hourly"
+require "wrf_library/measurand"
+
 module WrfLibrary
 
   module Statistic
-    require "wrf_library/statistic/hourly"
 
     # method to generate timespan mean values for the given measurand
     # @param [Symbol] measurand the given measurand
@@ -25,10 +27,7 @@ module WrfLibrary
       r2d = 180.0 / (Math.atan(1) * 4.0)
       u_component = handler.retrieve_data_set(:u_wind)
       v_component = handler.retrieve_data_set(:v_wind)
-      wind_speed = Array.new()
-      u_component.zip(v_component).each { |u, v| 
-        wind_speed << Math.sqrt(u**2+v**2)
-      }
+      wind_speed = Measurand::Wind.calculate_windspeed(u_component, v_component)
 
       calculate_hourly_means(timestamps, timespan, wind_speed)
     end
