@@ -24,7 +24,6 @@ module WrfLibrary
     # @return [Array] the array with the timespan sums rounded to 3 significant digits
     def self.calculate_timespan_windspeed_means(handler, timespan)
       timestamps = handler.retrieve_data_set(:forecast_time)
-      r2d = 180.0 / (Math.atan(1) * 4.0)
       u_component = handler.retrieve_data_set(:u_wind)
       v_component = handler.retrieve_data_set(:v_wind)
       wind_speed = Measurand::Wind.calculate_windspeed(u_component, v_component)
