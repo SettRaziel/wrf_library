@@ -206,4 +206,26 @@ describe WrfLibrary::WindDirectionRepository do
     end
   end
 
+  describe ".determine_prevalent_direction" do
+    context "given an array with western direction data" do
+      it "should determine the correct west wind distribution" do
+        # new instance for the wind distribution
+        data = [ 240, 243, 254, 263, 270, 270, 283, 285, 295, 300 ]
+        repository = WrfLibrary::WindDirectionRepository.new(data)
+        expect(repository.determine_prevalent_direction).to eq(:W)
+      end
+    end
+  end
+
+  describe ".determine_prevalent_direction" do
+    context "given an array with northern direction data" do
+      it "should determine the correct north wind distribution" do
+        # new instance for the wind distribution
+        data = [ 300, 310, 337, 342, 359, 1, 0, 22, 42, 67 ]
+        repository = WrfLibrary::WindDirectionRepository.new(data)
+        expect(repository.determine_prevalent_direction).to eq(:N)
+      end
+    end
+  end
+
 end

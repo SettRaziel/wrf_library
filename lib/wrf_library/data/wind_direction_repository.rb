@@ -7,7 +7,8 @@ module WrfLibrary
     attr_reader :direction_distribution
 
     # initialization
-    def initialize
+    # @param [Array] data optional array with wind directions, default is nil
+    def initialize(data=nil)
       @directions = Hash.new()
       @directions[:NE] = WrfLibrary::WindDirection.new( 22.5,  67.5, :NE)
       @directions[:E]  = WrfLibrary::WindDirection.new( 67.5, 112.5, :E)
@@ -22,6 +23,7 @@ module WrfLibrary
       @directions.each_key { |key|
         @direction_distribution[key] = 0
       }
+      generate_direction_distribution(data) if (data != nil)
     end
 
     # method to determine the wind section for a given value
