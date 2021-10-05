@@ -1,5 +1,6 @@
 require "wrf_library/statistic/hourly"
 require "wrf_library/measurand"
+require "wrf_library/data"
 
 module WrfLibrary
 
@@ -16,12 +17,10 @@ module WrfLibrary
       calculate_hourly_means(timestamps, timespan, data)
     end
 
-    # method to sum up the rain data into the given timespan rain sums
-    # for that calculate the difference from the rain value at the start and end
-    # of the currently checked hour
+    # method to calculate the windspeed means for the given timespan
     # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
     # @param [Symbol] timespan the time attribute for which the sum should be calculated
-    # @return [Array] the array with the timespan sums rounded to 3 significant digits
+    # @return [Array] the array with the timespan means rounded to 3 significant digits
     def self.calculate_timespan_windspeed_means(handler, timespan)
       timestamps = handler.retrieve_data_set(:forecast_time)
       u_component = handler.retrieve_data_set(:u_wind)
@@ -29,6 +28,19 @@ module WrfLibrary
       wind_speed = Measurand::Wind.calculate_windspeed(u_component, v_component)
 
       calculate_hourly_means(timestamps, timespan, wind_speed)
+    end
+
+    # method to calculate the windspeed means for the given timespan
+    # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
+    # @param [Symbol] timespan the time attribute for which the sum should be calculated
+    # @return [Array] the array with the timespan means rounded to 3 significant digits
+    def self.calculate_timespan_winddirection_means(handler, timespan)
+      timestamps = handler.retrieve_data_set(:forecast_time)
+      u_component = handler.retrieve_data_set(:u_wind)
+      v_component = handler.retrieve_data_set(:v_wind)
+      wind_speed = Measurand::Wind.calculate_winddirection(u_component, v_component)
+
+      calculate_direction_means(timestamps, timespan, wind_speed)
     end
 
     # method to sum up the rain data into the given timespan rain sums
@@ -71,7 +83,7 @@ module WrfLibrary
       rain_data
     end
 
-    # method to create the wind speed from its u and v component vector
+    # method to create mean values for the given data and timespan
     # @param [Array] timestamps the array with the timestamps of the data
     # @param [Symbol] timespan the time attribute for which the sum should be calculated
     # @param [Array] data the data values
@@ -97,6 +109,30 @@ module WrfLibrary
       results << (mean / value_count).round(3)
     end
 
+
+    # method to determine the prevalent wind direction for the given data per timespan
+    # @param [Array] timestamps the array with the timestamps of the data
+    # @param [Symbol] timespan the time attribute for which the sum should be calculated
+    # @param [Array] data the data values
+    # @return [Array] the hourly means of the input data
+    private_class_method def self.calculate_direction_means(timestamps, timespan, data)
+      results = Array.new()
+      hourly_subset = Array.new()
+
+      previous_timestamp = timestamps[0].send(timespan)
+      data.zip(timestamps).each { |value, timestamp|
+        # detect new hour, when the leading number increases by one
+        if (timestamp.send(timespan) != previous_timestamp)
+          directions = WindDirectionRepository.new(hourly_subset)
+          results << directions.determine_prevalent_direction
+          hourly_subset.clear
+        end
+
+        hourly_subset << value
+      }
+      directions = WindDirectionRepository.new(hourly_subset)
+      results << directions.determine_prevalent_direction
+    end
   end
  
 end
