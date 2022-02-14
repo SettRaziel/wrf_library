@@ -27,7 +27,7 @@ module WrfLibrary
     end
 
     # method to determine the wind section for a given value
-    # @params [Float] the wind direction
+    # @param [Float] value the wind direction
     # @return [Symbol] the wind direction symbol of the corresponding sector
     # @raise [ArgumentError] if the value lies outside the direction interval [0, 360]
     def determine_wind_sector(value)
@@ -84,9 +84,9 @@ module WrfLibrary
     attr_reader :symbol
 
     # initializaion
-    # @params [Float] the lower boundary to the direction interval
-    # @params [Float] the upper boundary to the direction interval
-    # @params [Symbol] the description symbol for the interval
+    # @param [Float] lower the lower boundary to the direction interval
+    # @param [Float] upper the upper boundary to the direction interval
+    # @param [Symbol] symbol the description symbol for the interval
     def initialize(lower, upper, symbol)
       @lower = lower
       @upper = upper

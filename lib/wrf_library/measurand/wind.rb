@@ -1,7 +1,9 @@
 module WrfLibrary
 
+  # Module for methods and classes regarding meotrological measurands
   module Measurand
 
+    # Helper module to calculate wind information from the wind vector components
     module Wind
 
       # method to calculate the wind speed from its two dimenstional components
