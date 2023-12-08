@@ -30,7 +30,7 @@ module WrfLibrary
       calculate_hourly_means(timestamps, timespan, wind_speed)
     end
 
-    # method to calculate the windspeed means for the given timespan
+    # method to calculate the wind direction means for the given timespan
     # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
     # @param [Symbol] timespan the time attribute for which the sum should be calculated
     # @return [Array] the array with the timespan means rounded to 3 significant digits
