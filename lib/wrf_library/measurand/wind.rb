@@ -26,8 +26,13 @@ module WrfLibrary
       def self.calculate_winddirection(u_component, v_component)
         r2d = 180.0 / (Math.atan(1) * 4.0)
         wind_direction = Array.new()
-        u_component.zip(v_component).each { |u, v| 
-          wind_direction << Math.atan2(u, v) * r2d + 180
+        u_component.zip(v_component).each { |u, v|
+          if (u != 0.0 || v != 0.0) 
+            wind_direction << Math.atan2(u, v) * r2d + 180
+          else
+            # normally atan2(0,0) is undefined, but implementation returns 0, so catch this edge case
+            wind_direction << -1 
+          end
         }
         wind_direction
       end
