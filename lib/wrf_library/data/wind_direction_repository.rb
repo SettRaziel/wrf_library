@@ -28,16 +28,14 @@ module WrfLibrary
 
     # method to determine the wind section for a given value
     # @param [Float] value the wind direction
-    # @return [Symbol] the wind direction symbol of the corresponding sector
+    # @return [Symbol] the wind direction symbol of the corresponding sector 
+    #                  or :NONE if no direction
     # @raise [ArgumentError] if the value lies outside the direction interval [0, 360]
     def determine_wind_sector(value)
       @directions.each_value { |direction|
-        if (value > direction.lower && value <= direction.upper)
-          return direction.symbol
-        elsif ((value > 337.5 && value <= 360.0) || 
-                (value <= 22.5 && value >= 0.0))
-          return :N
-        end
+        return direction.symbol if (value > direction.lower && value <= direction.upper)
+        return :N if ((value > 337.5 && value <= 360.0) || (value <= 22.5 && value >= 0.0))
+        return :NONE if (value == -1) # Edge case that wind components are zero, no direction
       }
       raise ArgumentError, "Given value #{value} does not represent a wind direction."
     end
