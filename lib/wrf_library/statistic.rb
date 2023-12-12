@@ -38,9 +38,9 @@ module WrfLibrary
       timestamps = handler.retrieve_data_set(:forecast_time)
       u_component = handler.retrieve_data_set(:u_wind)
       v_component = handler.retrieve_data_set(:v_wind)
-      wind_speed = Measurand::Wind.calculate_winddirection(u_component, v_component)
+      wind_direction = Measurand::Wind.calculate_winddirection(u_component, v_component)
 
-      calculate_direction_means(timestamps, timespan, wind_speed)
+      calculate_direction_means(timestamps, timespan, wind_direction)
     end
 
     # method to sum up the rain data into the given timespan rain sums
@@ -56,7 +56,7 @@ module WrfLibrary
 
       # when using an offset, start with the current value as delta
       previous_timespan = rain_data[0]
-      # use send to get the desired value to the time object, e.g. fpr hourly value get the current hour value
+      # use send to get the desired value to the time object, e.g. for hourly value get the current hour value
       previous_timestamp = timestamps[0].send(timespan)
       rain_data.zip(timestamps).each { |rain, timestamp|
         # detect new time interval value, when the leading number increases by one
@@ -94,7 +94,7 @@ module WrfLibrary
       value_count = 0
       mean = 0.0
 
-      # use send to get the desired value to the time object, e.g. fpr hourly value get the current hour value
+      # use send to get the desired value to the time object, e.g. for hourly value get the current hour value
       previous_timestamp = timestamps[0].send(timespan)
       data.zip(timestamps).each { |value, timestamp|
         # detect new time interval value, when the leading number increases by one
@@ -121,13 +121,14 @@ module WrfLibrary
       results = Array.new()
       hourly_subset = Array.new()
 
-      # use send to get the desired value to the time object, e.g. fpr hourly value get the current hour value
+      # use send to get the desired value to the time object, e.g. for hourly value get the current hour value
       previous_timestamp = timestamps[0].send(timespan)
       data.zip(timestamps).each { |value, timestamp|
         # detect new time interval value, when the leading number increases by one
         if (timestamp.send(timespan) != previous_timestamp)
           directions = WindDirectionRepository.new(hourly_subset)
           results << directions.determine_prevalent_direction
+          previous_timestamp = timestamp.send(timespan)
           hourly_subset.clear
         end
 
