@@ -8,6 +8,11 @@ Current version: v0.5.2
 
 ## Usage & Help
 The scripts and classes will be imported in other projects, so there will be not explicit usage.
+To use it as a gem define it in your Gemfile like this: 
+```
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+gem 'ruby_utils', github: 'SettRaziel/ruby_utils'
+```
 For details check the documentation.
 
 ## Documentation
@@ -27,6 +32,7 @@ Written with Ruby 2.4.0
 * csv (for reading input files)
 * json (for converting meteogram data)
 * date (for sunset equation)
+* check Gemfile and gemspec for other dependencies
 
 ## License
 see LICENSE

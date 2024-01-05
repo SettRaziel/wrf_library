@@ -29,6 +29,13 @@ module WrfLibrary
       def self.calculate_hourly_rainsum(handler)
         WrfLibrary::Statistic.calculate_timespan_rainsum(handler, :hour)
       end
+
+      # method to generate hourly values for the prevalent wind direction
+      # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
+      # @return [Array] the array with the hourly values
+      def self.calculate_hourly_winddirection_means(handler)
+        WrfLibrary::Statistic.calculate_timespan_winddirection_means(handler, :hour)
+      end
   
     end
 

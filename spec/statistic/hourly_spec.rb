@@ -39,6 +39,18 @@ describe WrfLibrary::Statistic do
     end
   end
 
+  describe "#calculate_hourly_winddirection_means" do
+    context "given a handler with data of a wrf forecast" do
+      it "calculate the hourly values for the prevalent wind direction" do
+        handler = WrfLibrary::Wrf::Handler.new(BERLIN_DATA, Time.parse("2021-06-29 12:00 UTC"))
+        directions = WrfLibrary::Statistic::Hourly.calculate_hourly_winddirection_means(handler)
+        expect(directions.length).to eq(25)
+        expect(directions[0]).to eq(:SW)
+        expect(directions[23]).to eq(:W)
+      end
+    end
+  end
+
   describe "#calculate_hourly_means" do
     context "given a handler with data of a wrf forecast" do
       it "calculate the hourly values for the air temperature" do
@@ -71,6 +83,18 @@ describe WrfLibrary::Statistic do
         expect(means.length).to eq(7)
         expect(means[0]).to eq(3.006)
         expect(means[5]).to eq(3.006)
+      end
+    end
+  end
+
+  describe "#calculate_hourly_winddirection_means" do
+    context "given a handler with data of a wrf forecast" do
+      it "calculate the hourly values for the prevalent wind direction" do
+        handler = WrfLibrary::Wrf::Handler.new(BERLIN_DATA_HOUR, Time.parse("2021-06-29 12:00 UTC"))
+        directions = WrfLibrary::Statistic::Hourly.calculate_hourly_winddirection_means(handler)
+        expect(directions.length).to eq(7)
+        expect(directions[0]).to eq(:SW)
+        expect(directions[5]).to eq(:SW)
       end
     end
   end

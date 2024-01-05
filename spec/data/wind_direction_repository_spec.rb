@@ -160,6 +160,14 @@ describe WrfLibrary::WindDirectionRepository do
 
   describe ".determine_wind_sector" do
     context "given an object of the class" do
+      it "should return :NONE since its the marker for both wind components being 0" do
+        expect(repository.determine_wind_sector(-1.0)).to eq(:NONE)
+      end
+    end
+  end
+
+  describe ".determine_wind_sector" do
+    context "given an object of the class" do
       it "should throw an argument error" do
         expect {
           repository.determine_wind_sector(360.1)
