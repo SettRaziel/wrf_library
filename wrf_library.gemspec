@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = "wrf_library"
-  s.version       = "0.5.2"
+  s.version       = "0.6.0"
   s.summary       = "Ruby wrf file collection"
   s.description   = "Collection of common scripts and data structures for usage in other wrf related ruby projects"
   s.authors       = ["Benjamin Held"]
