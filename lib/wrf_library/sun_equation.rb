@@ -123,7 +123,7 @@ module WrfLibrary
       t_l - longitude / @@rotation_time
     end
 
-    # method to calculate the time of the sunrise fpr the given data
+    # method to calculate the time of the sunrise for the given data
     # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Float] latitude the latitude of the requested location
@@ -135,7 +135,7 @@ module WrfLibrary
       event_utc + date.gmt_offset / 3600
     end
 
-    # method to calculate the time of the sunset fpr the given data
+    # method to calculate the time of the sunset for the given data
     # @param [Time] date the provided date or the current date if none is given
     # @param [Float] longitude the longitude of the requested location
     # @param [Float] latitude the latitude of the requested location
