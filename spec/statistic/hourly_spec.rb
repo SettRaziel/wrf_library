@@ -15,6 +15,20 @@ describe WrfLibrary::Statistic do
     end
   end
 
+  describe "#calculate_hourly_data_means" do
+    context "given a handler with data of a wrf forecast" do
+      it "calculate the hourly values for the air temperature" do
+        handler = WrfLibrary::Wrf::Handler.new(BERLIN_DATA, Time.parse("2019-06-29 12:00 UTC"))
+        timestamps = handler.retrieve_data_set(:forecast_time)
+        data = handler.retrieve_data_set(:air_temperature)
+        means = WrfLibrary::Statistic::Hourly.calculate_hourly_data_means(timestamps, data)
+        expect(means.length).to eq(25)
+        expect(means[0]).to eq(272.893)
+        expect(means[23]).to eq(276.096)
+      end
+    end
+  end
+
   describe "#calculate_hourly_means" do
     context "given a handler with data of a wrf forecast" do
       it "calculate the hourly values for the pressure" do

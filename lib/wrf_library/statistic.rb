@@ -89,7 +89,7 @@ module WrfLibrary
     # @param [Symbol] timespan the time attribute for which the sum should be calculated
     # @param [Array] data the data values
     # @return [Array] the hourly means of the input data
-    private_class_method def self.calculate_means_for_timespan(timestamps, timespan, data)
+    def self.calculate_means_for_timespan(timestamps, timespan, data)
       results = Array.new()
       value_count = 0
       mean = 0.0

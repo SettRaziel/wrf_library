@@ -14,6 +14,14 @@ module WrfLibrary
         WrfLibrary::Statistic.calculate_timespan_means(measurand, handler, :hour)
       end
 
+      # method to generate hourly mean values for the given data content
+      # @param [Array] timestamps the array with the timestamps of the data
+      # @param [Array] data the data values
+      # @return [Array] the hourly means of the input data
+      def self.calculate_hourly_data_means(timestamps, data)
+        WrfLibrary::Statistic.calculate_means_for_timespan(timestamps, :hour, data)
+      end
+
       # method to generate hourly mean values for the wind speed
       # @param [WrfLibrary::Wrf::Handler] handler the wrf handler with the data
       # @return [Array] the array with the hourly values
