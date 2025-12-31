@@ -5,7 +5,7 @@ describe WrfLibrary::Measurand::Wind do
 
   describe "#calculate_winddirection" do
     context "given the wind speed in its components u and v" do
-      it "calculate the wind direction" do
+      it "calculates the wind direction" do
         # [:W, :SW, :NW, :N, :N, -1, :S, :NE, :E, :SE]
         u = [1.0, 1.0,  0.5,  0.5,  0.0, 0.0, -0.5, -0.5, -1.0, -1.0]
         v = [0.0, 1.0, -0.5, -2.0, -1.0, 0.0,  2.0, -0.5,  0.0,  1.0]
