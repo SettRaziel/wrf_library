@@ -1,12 +1,12 @@
 module WrfLibrary
 
-  # Module for methods and classes regarding meotrological measurands
+  # Module for methods and classes regarding meteorological measurands
   module Measurand
 
     # Helper module to calculate wind information from the wind vector components
     module Wind
 
-      # method to calculate the wind speed from its two dimenstional components
+      # method to calculate the wind speed from its two dimensional components
       # @param [Array] u_component the horizontal wind component
       # @param [Array] v_component the vertical wind component
       # @return [Array] the two dimensional wind speed
