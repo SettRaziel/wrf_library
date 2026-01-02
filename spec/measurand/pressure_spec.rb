@@ -1,5 +1,5 @@
 require "spec_helper"
-require "wrf_library/statistic"
+require "wrf_library/measurand"
 
 describe WrfLibrary::Measurand::Pressure do
 
