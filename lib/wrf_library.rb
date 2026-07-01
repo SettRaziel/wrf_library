@@ -1,4 +1,3 @@
-require "wrf_library/apparent_temperature"
 require "wrf_library/data"
 require "wrf_library/entity"
 require "wrf_library/json_converter"

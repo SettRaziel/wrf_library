@@ -1,6 +1,6 @@
 module WrfLibrary
 
-  # Module for methods and classes regarding meotrological measurands
+  # Module for methods and classes regarding meteorological measurands
   module Measurand
 
     # Helper module to calculate and modify pressure values
