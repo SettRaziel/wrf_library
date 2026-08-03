@@ -16,7 +16,8 @@ gem 'ruby_utils', github: 'SettRaziel/ruby_utils'
 For details check the documentation.
 
 ## Documentation
-The documentation will be created with yard and published at a later point.
+Documentation is written in yard and can be created by running the shell-script `create_yard.sh`. Yard needs to be installed on the system in order to do that.
+The documentation can also be found online [here](https://bheld.eu/doc/wrflibrary_doc/index.html).
 
 ## Used version
 Written with Ruby 2.4.0
